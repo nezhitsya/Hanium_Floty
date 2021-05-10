@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "824099498662",
+    "firebase_url": "https://floty-daee1-default-rtdb.firebaseio.com",
+    "project_id": "floty-daee1",
+    "storage_bucket": "floty-daee1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824099498662:android:2f608fbf0fb3616420e267",
+        "android_client_info": {
+          "package_name": "com.hanium.floty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824099498662-hg0q1aappird8b97eftdpgb3o4rrh7pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPu6EfL-O73VyX9PcnzamVcKa1L2Jc3i8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824099498662-hg0q1aappird8b97eftdpgb3o4rrh7pe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
