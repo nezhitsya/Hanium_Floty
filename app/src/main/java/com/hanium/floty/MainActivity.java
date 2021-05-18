@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hanium.floty.fragment.DictionaryFragment;
 import com.hanium.floty.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new HomeFragment();
                     break;
                 case R.id.nav_dictionary:
-//                    selectedFragment = new DictionaryFragment();
+                    selectedFragment = new DictionaryFragment();
                     break;
                 case R.id.nav_settings:
 //                    selectedFragment = null;
