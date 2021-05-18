@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hanium.floty.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.nav_home:
-//                    selectedFragment = new HomeFragment();
+                    selectedFragment = new HomeFragment();
                     break;
                 case R.id.nav_dictionary:
 //                    selectedFragment = new DictionaryFragment();

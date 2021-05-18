@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HomeFragment">
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식물 애칭"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_profile"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/nickname"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/dday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D-Day"
+        android:textStyle="bold"
+        android:textColor="@color/colorGreen"
+        android:textSize="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/profile"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>
