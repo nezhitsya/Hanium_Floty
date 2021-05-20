@@ -23,7 +23,7 @@
         android:src="@drawable/ic_profile"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/nickname"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/dday"
@@ -35,6 +35,6 @@
         android:textSize="35dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/profile"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="40dp" />
 
 </RelativeLayout>

@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun delayScreen() {
         Completable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe({
-
+            main()
         })
     }
 
