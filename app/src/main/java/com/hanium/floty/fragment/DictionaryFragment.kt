@@ -6,20 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.hanium.floty.R
 import com.hanium.floty.adapter.DictionaryAdapter
 import com.hanium.floty.adapter.RetrofitInterface
+import com.hanium.floty.model.Item
 import com.hanium.floty.model.Plant
-import com.hanium.floty.model.PlantInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.jaxb.JaxbConverterFactory
 
 class DictionaryFragment : Fragment() {
 
@@ -55,21 +55,24 @@ class DictionaryFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        loadData()
+//        loadData()
 
         return view
     }
 
-    private fun setAdapter(plantList: ArrayList<PlantInfo>){
+    private fun setAdapter(plantList: ArrayList<Item>){
         val mAdapter = DictionaryAdapter(context!!, plantList)
+        mAdapter.notifyDataSetChanged()
         recyclerView.adapter = mAdapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     private fun loadData() {
         val retrofit = Retrofit.Builder()
                 .baseUrl("http://api.nongsaro.go.kr/service/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(JaxbConverterFactory.create())
+//                .addConverterFactory(SimpleXmlConverterFactory.create())
+//                .addConverterFactory(TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build()))
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
         val retrofitService = retrofit.create(RetrofitInterface::class.java)
@@ -78,7 +81,7 @@ class DictionaryFragment : Fragment() {
                 if (response.isSuccessful) {
                     val body = response.body()
                     body?.let {
-                        setAdapter(it.plants)
+                        setAdapter(it.items as ArrayList<Item>)
                     }
                 }
             }
