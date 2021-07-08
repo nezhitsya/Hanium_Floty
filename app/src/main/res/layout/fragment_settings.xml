@@ -45,7 +45,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_cloudy"
+            android:src="@drawable/ic_sunny"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="50dp" />
 
@@ -71,7 +71,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_cloudy"
+            android:src="@drawable/temp"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="50dp" />
 
@@ -98,7 +98,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_cloudy"
+            android:src="@drawable/ic_fan"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="50dp" />
 

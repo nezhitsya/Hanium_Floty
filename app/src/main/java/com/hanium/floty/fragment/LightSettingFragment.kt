@@ -8,11 +8,11 @@ import android.view.ViewGroup
 
 import com.hanium.floty.R
 
-class WaterSettingFragment : Fragment() {
+class LightSettingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var view: View = inflater.inflate(R.layout.fragment_water_setting, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_light_setting, container, false)
 
         return view
     }

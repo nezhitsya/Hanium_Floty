@@ -1,25 +1,13 @@
 package com.hanium.floty.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.hanium.floty.R
-import com.hanium.floty.adapter.DictionaryAdapter
-import com.hanium.floty.adapter.RetrofitInterface
-import com.hanium.floty.model.Item
-import com.hanium.floty.model.Plant
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.jaxb.JaxbConverterFactory
 
 class DictionaryFragment : Fragment() {
 
@@ -55,41 +43,7 @@ class DictionaryFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-//        loadData()
-
         return view
-    }
-
-    private fun setAdapter(plantList: ArrayList<Item>){
-        val mAdapter = DictionaryAdapter(context!!, plantList)
-        mAdapter.notifyDataSetChanged()
-        recyclerView.adapter = mAdapter
-    }
-
-    private fun loadData() {
-        val retrofit = Retrofit.Builder()
-                .baseUrl("http://api.nongsaro.go.kr/service/")
-                .addConverterFactory(JaxbConverterFactory.create())
-//                .addConverterFactory(SimpleXmlConverterFactory.create())
-//                .addConverterFactory(TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build()))
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-
-        val retrofitService = retrofit.create(RetrofitInterface::class.java)
-        retrofitService.requestAllData().enqueue(object : Callback<Plant> {
-            override fun onResponse(call: Call<Plant>, response: Response<Plant>) {
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    body?.let {
-                        setAdapter(it.items as ArrayList<Item>)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<Plant>, t: Throwable) {
-                Log.d("error at load data", t.message)
-            }
-        })
     }
 
 }
