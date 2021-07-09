@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hanium.floty.adapter.SettingAdapter;
+import com.hanium.floty.fragment.CalendarFragment;
 import com.hanium.floty.fragment.DictionaryFragment;
 import com.hanium.floty.fragment.HomeFragment;
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setAdapter(mAdapter);
                     break;
                 case R.id.nav_diary :
-//                    selectedFragment = new DiaryFragment();
+                    selectedFragment = new CalendarFragment();
                     break;
                 case R.id.nav_profile:
 //                    selectedFragment = new DictionaryFragment();
