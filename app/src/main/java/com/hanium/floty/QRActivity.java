@@ -44,9 +44,7 @@ public class QRActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
+            if(result.getContents() != null) {
                 auth.signInWithEmailAndPassword(result.getContents() + "@gmail.com", result.getContents()).addOnCompleteListener(QRActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -77,9 +75,9 @@ public class QRActivity extends AppCompatActivity {
 
                                         HashMap<String, Object> hashMap = new HashMap<>();
                                         hashMap.put("id", userid);
-                                        hashMap.put("nickname", "");
+                                        hashMap.put("nickname", "unknown");
                                         hashMap.put("profile", "https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/KakaoTalk_Photo_2021-07-12-18-38-48.png?alt=media&token=ee32bf3b-e661-432f-b8ad-029284e417c3");
-                                        hashMap.put("day", "");
+                                        hashMap.put("day", System.currentTimeMillis());
 
                                         reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.WaterSettingFragment">
+    tools:context=".fragment.FanSettingFragment">
 
     <ImageView
         android:id="@+id/circle"
         android:layout_width="320dp"
         android:layout_height="320dp"
-        android:src="@drawable/light"
+        android:src="@drawable/fan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"/>
 
@@ -17,7 +17,7 @@
         android:id="@+id/cloud"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_sunny"
+        android:src="@drawable/ic_fan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp" />
 
@@ -44,8 +44,8 @@
         android:id="@+id/range"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb_light"
-        android:progressDrawable="@drawable/seekbar_bar_light"
+        android:thumb="@drawable/seekbar_thumb_fan"
+        android:progressDrawable="@drawable/seekbar_bar_fan"
         android:max="100"
         android:layout_below="@+id/percent"
         android:layout_marginTop="30dp"

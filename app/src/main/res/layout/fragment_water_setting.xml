@@ -9,7 +9,7 @@
         android:id="@+id/circle"
         android:layout_width="320dp"
         android:layout_height="320dp"
-        android:src="@drawable/water"
+        android:src="@drawable/water_circle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"/>
     
@@ -44,8 +44,8 @@
         android:id="@+id/range"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb"
-        android:progressDrawable="@drawable/seekbar_bar"
+        android:thumb="@drawable/seekbar_thumb_water"
+        android:progressDrawable="@drawable/seekbar_bar_water"
         android:max="100"
         android:layout_below="@+id/percent"
         android:layout_marginTop="30dp"
