@@ -1,13 +1,10 @@
 package com.hanium.floty.fragment
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.hanium.floty.MainActivity
 import com.hanium.floty.R
 import com.hanium.floty.adapter.EventDecorator
 import com.hanium.floty.adapter.TodayDecorator
@@ -27,10 +24,13 @@ class CalendarFragment : Fragment() {
 
         calendar = view.findViewById(R.id.calendar)
         calendar.setSelectedDate(CalendarDay.today())
-        calendar.addDecorators(TodayDecorator(), EventDecorator(Collections.singleton(calendar.selectedDate)))
+        calendar.addDecorator(TodayDecorator())
 
-//        calendar.setOnDateChangedListener(object: OnDateSelectedListener {
-//        })
+        calendar.setOnDateChangedListener(object: OnDateSelectedListener {
+            override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
+                calendar.addDecorator(EventDecorator(Collections.singleton(date)))
+            }
+        })
 
         return view
     }

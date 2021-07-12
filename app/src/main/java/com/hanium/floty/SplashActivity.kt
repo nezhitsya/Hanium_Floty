@@ -19,24 +19,24 @@ class SplashActivity : AppCompatActivity() {
         delayScreen()
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//
-//        if (firebaseAuth != null && listener != null) {
-//            firebaseAuth.removeAuthStateListener(listener)
-//        }
-//    }
+    override fun onStop() {
+        super.onStop()
+
+        if (firebaseAuth != null && listener != null) {
+            firebaseAuth.removeAuthStateListener(listener)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-//        init()
+        init()
     }
 
     private fun delayScreen() {
         Completable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe({
-//            firebaseAuth.addAuthStateListener(listener)
+            firebaseAuth.addAuthStateListener(listener)
             main()
         })
     }
@@ -49,16 +49,16 @@ class SplashActivity : AppCompatActivity() {
             if (user != null) {
                 main()
             } else {
-//                login()
+                login()
             }
         }
     }
 
-//    private fun login() {
-//        val loginIntent = Intent(this, QRActivity::class:java)
-//        startActivity(loginIntent)
-//        finish()
-//    }
+    private fun login() {
+        val loginIntent = Intent(this, QRActivity::class.java)
+        startActivity(loginIntent)
+        finish()
+    }
 
     private fun main() {
         val mainIntent = Intent(this, MainActivity::class.java)
