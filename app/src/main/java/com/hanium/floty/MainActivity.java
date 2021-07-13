@@ -25,6 +25,7 @@ import com.hanium.floty.adapter.SettingAdapter;
 import com.hanium.floty.fragment.CalendarFragment;
 import com.hanium.floty.fragment.DictionaryFragment;
 import com.hanium.floty.fragment.HomeFragment;
+import com.hanium.floty.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,11 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new CalendarFragment();
                     break;
                 case R.id.nav_profile:
-//                    selectedFragment = new DictionaryFragment();
-//                    SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-//                    editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-//                    editor.apply();
-//                    selectedFragment = new ProfileFragment();
+                    selectedFragment = new ProfileFragment();
                     break;
             }
 
