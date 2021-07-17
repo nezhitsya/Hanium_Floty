@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.hanium.floty.R
-import com.hanium.floty.adapter.EventDecorator
-import com.hanium.floty.adapter.TodayDecorator
+import com.hanium.floty.decorator.EventDecorator
+import com.hanium.floty.decorator.TodayDecorator
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.util.*
-
 
 class CalendarFragment : Fragment() {
 
@@ -29,6 +29,11 @@ class CalendarFragment : Fragment() {
         calendar.setOnDateChangedListener(object: OnDateSelectedListener {
             override fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay, selected: Boolean) {
                 calendar.addDecorator(EventDecorator(Collections.singleton(date)))
+                Toast.makeText(context, date.toString(), Toast.LENGTH_SHORT).show()
+
+                val bundle = Bundle()
+                bundle.putString("date", date.toString())
+//                DiaryFragment().arguments = bundle
             }
         })
 

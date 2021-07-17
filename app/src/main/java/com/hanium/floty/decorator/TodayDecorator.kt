@@ -1,4 +1,4 @@
-package com.hanium.floty.adapter
+package com.hanium.floty.decorator
 
 import android.graphics.Color
 import android.graphics.Typeface

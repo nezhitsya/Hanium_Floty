@@ -1,19 +1,20 @@
 package com.hanium.floty.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
+import com.hanium.floty.decorator.LinearGradientSpan
 import com.hanium.floty.model.User
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -40,9 +41,16 @@ class HomeFragment : Fragment() {
                 val user: User? = snapshot.getValue(User::class.java)
 
                 user?.let {
-                    nickname.text = user.nickname
                     dday.text = user.day
                     Glide.with(context!!).load(user.profile).into(profile)
+
+                    // text에 gradient 넣는 코드..인데 안됨;;
+                    val start = ContextCompat.getColor(context!!, R.color.colorBlue)
+                    val end = ContextCompat.getColor(context!!, R.color.colorLightGreen)
+                    var text = user.nickname.toString()
+                    var spannable = text.toSpannable()
+                    spannable[0..text.length]= LinearGradientSpan(text, text, start, end)
+                    nickname.text = spannable.toString()
                 }
             }
 
