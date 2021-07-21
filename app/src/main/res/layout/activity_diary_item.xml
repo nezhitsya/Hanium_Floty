@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <ImageView
+        android:id="@+id/diary_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_flower_green"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <TextView
+        android:id="@+id/diary_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="340dp"
+        android:text="n월 n일"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/diary_weather"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="345dp"
+        android:src="@drawable/ic_sunny" />
+
+    <TextView
+        android:id="@+id/diary_content"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:text="내용"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

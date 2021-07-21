@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/diary_list_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_span="2"
+        android:layout_weight="1"
+        android:text="0월0일"
+        android:textSize="30dp" />
+
+    <ListView
+        android:id="@+id/result_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_below="@id/diary_list_result"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_diary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="175dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    </RelativeLayout>
