@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -18,12 +19,20 @@ import com.hanium.floty.QRActivity
 
 import com.hanium.floty.R
 import com.hanium.floty.model.User
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.dday
+import kotlinx.android.synthetic.main.fragment_profile.nickname
+import kotlinx.android.synthetic.main.fragment_profile.profile
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProfileFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
     lateinit var mReference: DatabaseReference
+
+    private val ONE_DAY: Int = 24 * 60 * 60 * 1000
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,6 +43,9 @@ class ProfileFragment : Fragment() {
         var logout: TextView = view.findViewById(R.id.logout)
         var resign: TextView = view.findViewById(R.id.resign)
         var setting: ImageView = view.findViewById(R.id.setting)
+        var diary: LinearLayout = view.findViewById(R.id.diary)
+        var history: LinearLayout = view.findViewById(R.id.history)
+        var bookmar: LinearLayout = view.findViewById(R.id.bookmark)
 
         logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -58,6 +70,10 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(context!!, EditProfileActivity::class.java))
         }
 
+        diary.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiaryListFragment()).addToBackStack(null).commit()
+        }
+
         userInfo()
 
         return view
@@ -72,8 +88,18 @@ class ProfileFragment : Fragment() {
 
                 user?.let {
                     nickname.text = user.nickname
-                    dday.text = user.day
                     Glide.with(context!!).load(user.profile).into(profile)
+
+                    val dateFormat = SimpleDateFormat("yyyyMMdd")
+                    var startDate = dateFormat.parse(user.year!! + user.month!! + user.day!!).time
+                    var today = Calendar.getInstance().apply {
+                        set(Calendar.HOUR_OF_DAY, 0)
+                        set(Calendar.MINUTE, 0)
+                        set(Calendar.SECOND, 0)
+                        set(Calendar.MILLISECOND, 0)
+                    }.time.time
+
+                    dday.text = "D + " + ((today - startDate) / ONE_DAY).toString()
                 }
             }
 

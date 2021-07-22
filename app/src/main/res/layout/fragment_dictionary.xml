@@ -34,16 +34,6 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@+id/search_container"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorGray" />
-
     <TextView
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"
@@ -51,7 +41,7 @@
         android:text="추천 식물"
         android:textSize="9dp"
         android:layout_margin="10dp"
-        android:layout_below="@id/line1" />
+        android:layout_below="@id/search_container" />
 
     <LinearLayout
         android:id="@+id/cardnews"
@@ -75,7 +65,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="140dp"
-                    android:src="@drawable/Basil" />
+                    android:src="@drawable/basil" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -99,7 +89,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="140dp"
-                    android:src="@drawable/Arugula" />
+                    android:src="@drawable/arugula" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -123,7 +113,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="140dp"
-                    android:src="@drawable/Rosemary" />
+                    android:src="@drawable/rosemary" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -141,11 +131,21 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@+id/cardnews"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/colorGray" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/cardnews" />
+        android:layout_below="@+id/line1" />
 
 </RelativeLayout>

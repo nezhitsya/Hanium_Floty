@@ -105,7 +105,9 @@ class EditProfileActivity : AppCompatActivity() {
         var monthSpinner: String = month.selectedItem.toString()
         var daySpinner: String = day.selectedItem.toString()
 
-        hashMap["day"] = yearSpinner + " 년 " + monthSpinner + " 월 " + daySpinner + " 일"
+        hashMap["year"] = yearSpinner
+        hashMap["month"] = monthSpinner
+        hashMap["day"] = daySpinner
         hashMap["nickname"] = nickname
         reference.updateChildren(hashMap)
     }
