@@ -30,7 +30,7 @@ class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): R
 
         fun bind(mDiary: Diary, context: Context) {
             title?.text = mDiary.title
-            date?.text = mDiary.date
+            date?.text = mDiary.year + " 년 " + mDiary.month + " 월 " + mDiary.day + " 일"
             image?.let {
                 Glide.with(context).load(mDiary.image).into(it)
             }
