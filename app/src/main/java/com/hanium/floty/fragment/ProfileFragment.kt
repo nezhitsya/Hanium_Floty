@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -38,6 +35,8 @@ class ProfileFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        var bundle = Bundle()
+
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         var logout: TextView = view.findViewById(R.id.logout)
@@ -45,7 +44,10 @@ class ProfileFragment : Fragment() {
         var setting: ImageView = view.findViewById(R.id.setting)
         var diary: LinearLayout = view.findViewById(R.id.diary)
         var history: LinearLayout = view.findViewById(R.id.history)
-        var bookmar: LinearLayout = view.findViewById(R.id.bookmark)
+        var bookmark: LinearLayout = view.findViewById(R.id.bookmark)
+        var community: RelativeLayout = view.findViewById(R.id.community_container)
+        var liked: RelativeLayout = view.findViewById(R.id.liked_container)
+        var mypost: RelativeLayout = view.findViewById(R.id.mypost_container)
 
         logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -72,6 +74,30 @@ class ProfileFragment : Fragment() {
 
         diary.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiaryListFragment()).addToBackStack(null).commit()
+        }
+
+        community.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment().apply {
+                arguments = bundle.apply {
+                    putString("pageInfo", "Community")
+                }
+            }).addToBackStack(null).commit()
+        }
+
+        liked.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment().apply {
+                arguments = bundle.apply {
+                    putString("pageInfo", "Liked")
+                }
+            }).addToBackStack(null).commit()
+        }
+
+        mypost.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment().apply {
+                arguments = bundle.apply {
+                    putString("pageInfo", "Mypost")
+                }
+            }).addToBackStack(null).commit()
         }
 
         userInfo()
