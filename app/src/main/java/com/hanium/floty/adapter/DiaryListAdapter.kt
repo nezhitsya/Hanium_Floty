@@ -1,6 +1,7 @@
 package com.hanium.floty.adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.hanium.floty.MainActivity
 import com.hanium.floty.R
+import com.hanium.floty.fragment.DiaryDetailFragment
 import com.hanium.floty.model.Diary
 
 class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): RecyclerView.Adapter<DiaryListAdapter.Holder>() {
@@ -42,6 +45,15 @@ class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): R
                 weather?.setImageResource(R.drawable.ic_snowy)
             } else {
                 weather?.setImageResource(R.drawable.ic_rainy)
+            }
+
+            itemView.setOnClickListener {
+                var editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+                editor.putString("diaryid", mDiary.diaryid)
+                editor.apply()
+
+                val fragment = (context as MainActivity).supportFragmentManager.beginTransaction()
+                fragment.replace(R.id.fragment_container, DiaryDetailFragment()).addToBackStack(null).commit()
             }
         }
     }

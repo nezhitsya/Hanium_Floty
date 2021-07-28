@@ -4,6 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Diary (
+        var diaryid: String? = "",
         var publisher: String? = "",
         var year: String? = "",
         var month: String? = "",
