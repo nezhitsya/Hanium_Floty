@@ -76,8 +76,7 @@ public class QRActivity extends AppCompatActivity {
                                         HashMap<String, Object> hashMap = new HashMap<>();
                                         hashMap.put("id", userid);
                                         hashMap.put("nickname", "unknown");
-                                        hashMap.put("profile", "https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/KakaoTalk_Photo_2021-07-12-18-38-48.png?alt=media&token=ee32bf3b-e661-432f-b8ad-029284e417c3");
-                                        hashMap.put("day", System.currentTimeMillis());
+                                        hashMap.put("profile", "https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/default.png?alt=media&token=0360a320-a31e-4cef-bc1d-21677e93837f");
 
                                         reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
