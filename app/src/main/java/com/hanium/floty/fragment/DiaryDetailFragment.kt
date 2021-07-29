@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,6 +26,18 @@ class DiaryDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_diary_detail, container, false)
+
+        var edit: RelativeLayout = view.findViewById(R.id.edit)
+        var delete: RelativeLayout = view.findViewById(R.id.delete)
+
+        edit.setOnClickListener {
+
+        }
+
+        delete.setOnClickListener {
+            FirebaseDatabase.getInstance().getReference("Diary").child(diaryid).removeValue()
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayDiaryFragment()).addToBackStack(null).commit()
+        }
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)

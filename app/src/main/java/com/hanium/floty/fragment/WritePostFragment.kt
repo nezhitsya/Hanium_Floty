@@ -5,14 +5,13 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -20,11 +19,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-
+import com.google.firebase.storage.StorageTask
 import com.hanium.floty.R
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_write_post.*
-import java.lang.Exception
 
 class WritePostFragment : Fragment() {
 
@@ -49,6 +47,12 @@ class WritePostFragment : Fragment() {
 
         write.setOnClickListener {
             upload()
+
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment().apply {
+                arguments = bundle.apply {
+                    putString("pageInfo", "Community")
+                }
+            }).commit()
         }
 
         addPhoto.setOnClickListener {
@@ -91,11 +95,11 @@ class WritePostFragment : Fragment() {
     private fun uploadPhoto() {
         if(mImageUri != null) {
             val filereference: StorageReference = storageRef.child(getFileExtension(mImageUri).toString())
-            var uploadTask = filereference.putFile(mImageUri)
 
+            var uploadTask: StorageTask<*> = filereference.putFile(mImageUri)
             uploadTask.continueWithTask { task ->
                 if(!task.isSuccessful) {
-                    Log.d("kdkdkdkk", "fail2")
+
                 }
                 filereference.downloadUrl
             }.addOnCompleteListener { task ->
@@ -103,18 +107,35 @@ class WritePostFragment : Fragment() {
                     val downloadUri = task.result
                     val url = downloadUri!!.toString()
 
+                    var description = description.text.toString()
+                    var title = title.text.toString()
+
                     val hashMap: HashMap<String, Any> = HashMap()
                     hashMap["postimage"] = url
+                    hashMap["postid"] = postid
+                    hashMap["description"] = description
+                    hashMap["title"] = title
+                    hashMap["time"] = System.currentTimeMillis()
+                    hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
                     reference.child(postid).setValue(hashMap)
                 } else {
                     Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener { e ->
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                Log.d("kdkdkdkk", "fail3")
             }
         } else {
-            Log.d("kdkdkdkk", "fail1")
+            var description = description.text.toString()
+            var title = title.text.toString()
+
+            val hashMap: HashMap<String, Any> = HashMap()
+            hashMap["postimage"] = "null"
+            hashMap["postid"] = postid
+            hashMap["description"] = description
+            hashMap["title"] = title
+            hashMap["time"] = System.currentTimeMillis()
+            hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
+            reference.child(postid).setValue(hashMap)
         }
     }
 

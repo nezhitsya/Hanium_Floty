@@ -59,17 +59,18 @@ class CommentFragment : Fragment() {
     }
 
     private fun postComment() {
-        var comment = comment.text.toString()
+        var commentTxt = comment.text.toString()
         var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
         val commentid: String = reference.push().key.toString()
 
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["comment"] = comment
+        hashMap["comment"] = commentTxt
         hashMap["commentid"] = commentid
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
         hashMap["time"] = System.currentTimeMillis()
 
         reference.child(commentid).setValue(hashMap)
+        comment.setText("")
     }
 
     private fun getComment() {
