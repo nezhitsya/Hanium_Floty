@@ -52,8 +52,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:background="?android:attr/windowBackground"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/bottom_navigation_background"
         app:itemIconTint="@color/selector"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation" />

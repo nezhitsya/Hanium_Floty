@@ -5,14 +5,43 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/leaf1"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/leaf2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/leaf3"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="100dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/leaf4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="30dp" />
+
     <TextView
         android:id="@+id/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="식물 애칭"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
         android:textSize="25dp"
+        android:textColor="@color/colorBlack"
+        android:bufferType="spannable"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp" />
 
@@ -22,17 +51,26 @@
         android:layout_height="250dp"
         android:src="@drawable/ic_profile"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/nickname"
+        android:layout_centerVertical="true"
         android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🌱 우리가 함께한지 ∙∙∙"
+        android:textColor="@color/colorGreen"
+        android:layout_above="@+id/dday"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/dday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="D-Day"
+        android:text="D+Day"
         android:textStyle="bold"
-        android:textColor="@color/colorGreen"
         android:textSize="35dp"
+        android:textColor="@color/colorGreen"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp" />
