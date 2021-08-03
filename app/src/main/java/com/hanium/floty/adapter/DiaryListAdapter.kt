@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hanium.floty.MainActivity
@@ -30,13 +31,23 @@ class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): R
         val weather = itemView?.findViewById<ImageView>(R.id.weather)
         val date = itemView?.findViewById<TextView>(R.id.diary_date)
         val image = itemView?.findViewById<ImageView>(R.id.diary_image)
+        val imageContainer = itemView?.findViewById<CardView>(R.id.image)
 
         fun bind(mDiary: Diary, context: Context) {
             title?.text = mDiary.title
             date?.text = mDiary.year + " 년 " + mDiary.month + " 월 " + mDiary.day + " 일"
-            image?.let {
-                Glide.with(context).load(mDiary.image).into(it)
+
+            if (mDiary.image == "null") {
+                imageContainer!!.visibility = View.GONE
+                image!!.visibility = View.GONE
+            } else {
+                imageContainer!!.visibility = View.VISIBLE
+                image!!.visibility = View.VISIBLE
+                image?.let {
+                    Glide.with(context).load(mDiary.image).into(it)
+                }
             }
+
             if (mDiary.weather == "sunny") {
                 weather?.setImageResource(R.drawable.ic_sunny)
             } else if (mDiary.weather == "cloudy") {

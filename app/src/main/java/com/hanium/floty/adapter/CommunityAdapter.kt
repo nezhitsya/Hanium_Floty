@@ -49,7 +49,10 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
             if (mPost.postimage == "null") {
                 photo?.visibility = View.GONE
             } else {
-                photo?.let { Glide.with(context).load(mPost.postimage).into(it) }
+                photo?.visibility = View.VISIBLE
+                photo?.let {
+                    Glide.with(context).load(mPost.postimage).into(it)
+                }
             }
 
             comment?.setOnClickListener {

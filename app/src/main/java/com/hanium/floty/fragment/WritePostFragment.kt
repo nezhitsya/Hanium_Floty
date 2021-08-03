@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -19,7 +20,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.StorageTask
 import com.hanium.floty.R
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_write_post.*
@@ -29,8 +29,8 @@ class WritePostFragment : Fragment() {
     lateinit var firebaseUser: FirebaseUser
     lateinit var storageRef: StorageReference
     lateinit var reference: DatabaseReference
-    lateinit var mImageUri: Uri
     lateinit var postid: String
+    var mImageUri: Uri? = null
 
     var bundle = Bundle()
 
@@ -40,7 +40,15 @@ class WritePostFragment : Fragment() {
 
         var write: RelativeLayout = view.findViewById(R.id.write_container)
         var addPhoto: FloatingActionButton = view.findViewById(R.id.addPhoto)
+        var photo: ImageView = view.findViewById(R.id.photo)
 
+        if (mImageUri == null) {
+            photo.visibility = View.GONE
+        } else {
+            photo.visibility = View.VISIBLE
+        }
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
         reference = FirebaseDatabase.getInstance().getReference("Posts")
         storageRef = FirebaseStorage.getInstance().getReference("posts")
         postid = reference.push().key.toString()
@@ -56,11 +64,8 @@ class WritePostFragment : Fragment() {
         }
 
         addPhoto.setOnClickListener {
-            CropImage.activity().setAspectRatio(1, 1).start(this.context as Activity)
+            getContext()?.let { it -> CropImage.activity().setAspectRatio(1, 1).start(it, this) }
         }
-
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        storageRef = FirebaseStorage.getInstance().getReference("Posts")
 
         return view
     }
@@ -73,30 +78,31 @@ class WritePostFragment : Fragment() {
     }
 
     private fun upload() {
-        var description = description.text.toString()
-        var title = title.text.toString()
-
-        val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["postimage"] = "null"
-        hashMap["postid"] = postid
-        hashMap["description"] = description
-        hashMap["title"] = title
-        hashMap["time"] = System.currentTimeMillis()
-        hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
-        reference.child(postid).setValue(hashMap)
-
-        activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment().apply {
-            arguments = bundle.apply {
-                putString("pageInfo", "Community")
-            }
-        }).commit()
+        if(mImageUri == null) {
+            val hashMap: HashMap<String, Any> = HashMap()
+            hashMap["postimage"] = "null"
+            hashMap["postid"] = postid
+            hashMap["description"] = post_content.text.toString()
+            hashMap["title"] = title.text.toString()
+            hashMap["time"] = System.currentTimeMillis()
+            hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
+            reference.child(postid).updateChildren(hashMap)
+        } else {
+            val hashMap: HashMap<String, Any> = HashMap()
+            hashMap["postid"] = postid
+            hashMap["description"] = post_content.text.toString()
+            hashMap["title"] = title.text.toString()
+            hashMap["time"] = System.currentTimeMillis()
+            hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
+            reference.child(postid).updateChildren(hashMap)
+        }
     }
 
     private fun uploadPhoto() {
         if(mImageUri != null) {
-            val filereference: StorageReference = storageRef.child(getFileExtension(mImageUri).toString())
+            val filereference: StorageReference = storageRef.child(getFileExtension(mImageUri!!).toString())
 
-            var uploadTask: StorageTask<*> = filereference.putFile(mImageUri)
+            var uploadTask = filereference.putFile(mImageUri!!)
             uploadTask.continueWithTask { task ->
                 if(!task.isSuccessful) {
 
@@ -107,17 +113,9 @@ class WritePostFragment : Fragment() {
                     val downloadUri = task.result
                     val url = downloadUri!!.toString()
 
-                    var description = description.text.toString()
-                    var title = title.text.toString()
-
                     val hashMap: HashMap<String, Any> = HashMap()
                     hashMap["postimage"] = url
-                    hashMap["postid"] = postid
-                    hashMap["description"] = description
-                    hashMap["title"] = title
-                    hashMap["time"] = System.currentTimeMillis()
-                    hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
-                    reference.child(postid).setValue(hashMap)
+                    reference.child(postid).updateChildren(hashMap)
                 } else {
                     Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
                 }
@@ -125,17 +123,7 @@ class WritePostFragment : Fragment() {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }
         } else {
-            var description = description.text.toString()
-            var title = title.text.toString()
-
-            val hashMap: HashMap<String, Any> = HashMap()
-            hashMap["postimage"] = "null"
-            hashMap["postid"] = postid
-            hashMap["description"] = description
-            hashMap["title"] = title
-            hashMap["time"] = System.currentTimeMillis()
-            hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
-            reference.child(postid).setValue(hashMap)
+            upload()
         }
     }
 
@@ -143,9 +131,11 @@ class WritePostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            var result: CropImage.ActivityResult  = CropImage.getActivityResult(data)
+            var result: CropImage.ActivityResult = CropImage.getActivityResult(data)
 
             mImageUri = result.uri
+            photo.visibility = View.VISIBLE
+            uploadPhoto()
             photo.setImageURI(mImageUri)
         } else {
             Toast.makeText(context, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();

@@ -65,6 +65,9 @@ class PostDetailFragment : Fragment() {
             }).addToBackStack(null).commit()
         }
 
+        var postImage: ImageView = view.findViewById(R.id.post_image)
+        postImage.visibility = View.GONE
+
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         postid = preferences.getString("postid", "none").toString()
@@ -105,6 +108,13 @@ class PostDetailFragment : Fragment() {
                     if (publisher == firebaseUser.uid) {
                         delete.visibility = View.VISIBLE
                         like.visibility = View.GONE
+                    }
+
+                    if (post.postimage == "null") {
+                        post_image.visibility = View.GONE
+                    } else {
+                        post_image.visibility = View.VISIBLE
+                        Glide.with(context!!).load(post.postimage).into(post_image)
                     }
                 }
             }

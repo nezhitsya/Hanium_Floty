@@ -3,6 +3,7 @@ package com.hanium.floty.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,11 +36,11 @@ class CommentFragment : Fragment() {
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         postid = preferences.getString("postid", "none").toString()
 
-        var comment: EditText = view.findViewById(R.id.comment)
+        var commentDesc: EditText = view.findViewById(R.id.commentDesc)
         var send: TextView = view.findViewById(R.id.send)
 
         send.setOnClickListener {
-            if(comment.text.toString().equals("")) {
+            if(commentDesc.text.toString().equals("")) {
                 Toast.makeText(context, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 postComment()
@@ -59,18 +60,17 @@ class CommentFragment : Fragment() {
     }
 
     private fun postComment() {
-        var commentTxt = comment.text.toString()
         var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
         val commentid: String = reference.push().key.toString()
 
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["comment"] = commentTxt
+        hashMap["comment"] = commentDesc.text.toString()
         hashMap["commentid"] = commentid
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
         hashMap["time"] = System.currentTimeMillis()
 
         reference.child(commentid).setValue(hashMap)
-        comment.setText("")
+        commentDesc.setText("")
     }
 
     private fun getComment() {

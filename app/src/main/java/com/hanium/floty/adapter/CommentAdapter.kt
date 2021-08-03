@@ -1,6 +1,7 @@
 package com.hanium.floty.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>):
     }
 
     override fun getItemCount(): Int {
+        Log.d("day", commentList.size.toString())
         return commentList.size
     }
 
@@ -36,8 +38,10 @@ class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>):
             time?.text = df.format(mComment.time)
             publisherInfo(profile, nickname, mComment.publisher)
 
-            if(mComment.publisher!! != FirebaseAuth.getInstance().currentUser!!.toString()) {
+            if(mComment.publisher!! != FirebaseAuth.getInstance().currentUser!!.uid) {
                 option!!.visibility = View.GONE
+            } else {
+                option!!.visibility = View.VISIBLE
             }
 
             option?.setOnClickListener{

@@ -8,7 +8,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
     android:orientation="vertical"
-    tools:context=".fragment.DiaryDetailFragment">
+    tools:context=".fragment.WriteDiaryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,13 +30,46 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_sunny" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/sunny"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_sunny" />
+
+                <ImageView
+                    android:id="@+id/cloudy"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@id/sunny"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_cloudy" />
+
+                <ImageView
+                    android:id="@+id/rainy"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@id/cloudy"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_rainy" />
+
+                <ImageView
+                    android:id="@+id/snowy"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@id/rainy"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_snowy" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -48,10 +81,12 @@
             android:layout_marginEnd="10dp"
             android:background="@color/colorGreen" />
 
-        <TextView
+        <EditText
             android:id="@+id/diary_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="제목"
+            android:background="@null"
             android:textColor="@color/colorBlack"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -72,15 +107,16 @@
             android:layout_height="300dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_flower_green" />
+            android:layout_gravity="center" />
 
-        <TextView
+        <EditText
             android:id="@+id/diary_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="내용"
             android:textSize="15dp"
             android:textColor="@color/colorBlack"
+            android:background="@null"
             android:gravity="top"
             android:layout_margin="20dp" />
 
@@ -91,32 +127,25 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/edit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
             <ImageView
-                android:id="@+id/edit_image"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/ic_write"
+                android:id="@+id/addPhoto"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_photo"
+                android:tint="@color/colorGreen"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="edit"
-                android:textSize="12dp"
-                android:layout_toRightOf="@+id/edit_image"
-                android:layout_centerVertical="true" />
-
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/delete"
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true">
@@ -124,7 +153,7 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:src="@drawable/ic_delete"
+                android:src="@drawable/ic_write"
                 android:layout_toRightOf="@+id/delete_text"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
@@ -135,7 +164,7 @@
                 android:id="@+id/delete_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="delete"
+                android:text="save"
                 android:textSize="12dp"
                 android:layout_centerVertical="true" />
 

@@ -1,6 +1,7 @@
 package com.hanium.floty.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,11 +32,28 @@ class TodayDiaryFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_today_diary, container, false)
 
+        var bundle = Bundle()
+
         year = arguments!!.getInt("year")
         month = arguments!!.getInt("month")
         day = arguments!!.getInt("day")
 
+        var year1 = year
+        var month1 = month
+        var day1 = day
+
         var date: TextView = view.findViewById(R.id.date)
+        var add: View = view.findViewById(R.id.addDiary)
+
+        add.setOnClickListener{
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WriteDiaryFragment().apply {
+                arguments = bundle.apply {
+                    putInt("year", year1)
+                    putInt("month", month1)
+                    putInt("day", day1)
+                }
+            }).addToBackStack(null).commit()
+        }
 
         date.text = year.toString() +". " + month.toString() + ". " + day.toString()
 
