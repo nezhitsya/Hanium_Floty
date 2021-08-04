@@ -158,7 +158,7 @@ class PostDetailFragment : Fragment() {
                         commentList.add(comment)
                     }
                 }
-                val adapter = CommentAdapter(context!!, commentList)
+                val adapter = CommentAdapter(context!!, commentList, postid)
                 recyclerView.adapter = adapter
             }
 

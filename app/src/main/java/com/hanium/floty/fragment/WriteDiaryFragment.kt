@@ -7,23 +7,22 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 import com.hanium.floty.R
+import com.hanium.floty.model.Diary
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_write_diary.*
 import kotlinx.android.synthetic.main.fragment_write_post.*
@@ -45,24 +44,64 @@ class WriteDiaryFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_write_diary, container, false)
 
+        reference = FirebaseDatabase.getInstance().getReference("Diary")
+        storageRef = FirebaseStorage.getInstance().getReference("diary")
+
         var bundle = Bundle()
 
         year = arguments!!.getInt("year")
         month = arguments!!.getInt("month")
         day = arguments!!.getInt("day")
 
-        var year1 = year
-        var month1 = month
-        var day1 = day
-
         var addPhoto: ImageView = view.findViewById(R.id.addPhoto)
-        var save: RelativeLayout = view.findViewById(R.id.save)
         var date: TextView = view.findViewById(R.id.date)
         var sunny: ImageView = view.findViewById(R.id.sunny)
         var cloudy: ImageView = view.findViewById(R.id.cloudy)
         var rainy: ImageView = view.findViewById(R.id.rainy)
         var snowy: ImageView = view.findViewById(R.id.snowy)
         var diaryImage: ImageView = view.findViewById(R.id.diary_img)
+        var save: RelativeLayout = view.findViewById(R.id.save)
+
+        if (arguments!!.getString("id").toString() != "null") {
+            diaryid = arguments?.getString("id").toString()
+            checkEdit()
+            addPhoto.visibility = View.GONE
+
+            save.setOnClickListener {
+                edit()
+
+                var year1 = year
+                var month1 = month
+                var day1 = day
+
+                activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayDiaryFragment().apply {
+                    arguments = bundle.apply {
+                        putInt("year", year1)
+                        putInt("month", month1)
+                        putInt("day", day1)
+                    }
+                }).commit()
+            }
+        } else {
+            diaryid = reference.push().key.toString()
+            addPhoto.visibility = View.VISIBLE
+
+            save.setOnClickListener {
+                upload()
+
+                var year1 = year
+                var month1 = month
+                var day1 = day
+
+                activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayDiaryFragment().apply {
+                    arguments = bundle.apply {
+                        putInt("year", year1)
+                        putInt("month", month1)
+                        putInt("day", day1)
+                    }
+                }).commit()
+            }
+        }
 
         if (mImageUri == null) {
             diaryImage.visibility = View.GONE
@@ -74,18 +113,6 @@ class WriteDiaryFragment : Fragment() {
 
         addPhoto.setOnClickListener {
             CropImage.activity().setAspectRatio(1, 1).start(context!!, this)
-        }
-
-        save.setOnClickListener {
-            upload()
-
-            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TodayDiaryFragment().apply {
-                arguments = bundle.apply {
-                    putInt("year", year1)
-                    putInt("month", month1)
-                    putInt("day", day1)
-                }
-            }).commit()
         }
 
         sunny.setOnClickListener {
@@ -116,10 +143,6 @@ class WriteDiaryFragment : Fragment() {
             rainy.setColorFilter(Color.parseColor("#646464"))
             snowy.setColorFilter(Color.parseColor("#CDCDCD"))
         }
-
-        reference = FirebaseDatabase.getInstance().getReference("Diary")
-        storageRef = FirebaseStorage.getInstance().getReference("diary")
-        diaryid = reference.push().key.toString()
 
         return view
     }
@@ -183,6 +206,47 @@ class WriteDiaryFragment : Fragment() {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun checkEdit() {
+        val ref: DatabaseReference = reference.child(diaryid)
+        ref.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val diary: Diary? = snapshot.getValue(Diary::class.java)
+                if (diary != null) {
+                    diary_title.setText(diary.title)
+                    if (diary.image != "null") {
+                        diary_img.visibility = View.VISIBLE
+                        Glide.with(context!!).load(diary.image).into(diary_img)
+                    } else {
+                        diary_img.visibility = View.GONE
+                    }
+                    diary_content.setText(diary.description)
+                    if (diary.weather == "sunny") {
+                        sunny.performClick()
+                    } else if (diary.weather == "rainy") {
+                        rainy.performClick()
+                    } else if (diary.weather == "snowy") {
+                        snowy.performClick()
+                    } else {
+                        cloudy.performClick()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun edit() {
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["title"] = diary_title.text.toString()
+        hashMap["description"] = diary_content.text.toString()
+        hashMap["weather"] = weather
+        reference.child(diaryid).updateChildren(hashMap)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

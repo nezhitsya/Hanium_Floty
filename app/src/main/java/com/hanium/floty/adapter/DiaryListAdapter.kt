@@ -2,6 +2,7 @@ package com.hanium.floty.adapter
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,8 @@ class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): R
         val image = itemView?.findViewById<ImageView>(R.id.diary_image)
         val imageContainer = itemView?.findViewById<CardView>(R.id.image)
 
+        var bundle = Bundle()
+
         fun bind(mDiary: Diary, context: Context) {
             title?.text = mDiary.title
             date?.text = mDiary.year + " 년 " + mDiary.month + " 월 " + mDiary.day + " 일"
@@ -63,8 +66,18 @@ class DiaryListAdapter(val context: Context, val diaryList: ArrayList<Diary>): R
                 editor.putString("diaryid", mDiary.diaryid)
                 editor.apply()
 
+                var year1: Int = Integer.parseInt(mDiary.year!!)
+                var month1: Int = Integer.parseInt(mDiary.month!!)
+                var day1: Int = Integer.parseInt(mDiary.day!!)
+
                 val fragment = (context as MainActivity).supportFragmentManager.beginTransaction()
-                fragment.replace(R.id.fragment_container, DiaryDetailFragment()).addToBackStack(null).commit()
+                fragment.replace(R.id.fragment_container, DiaryDetailFragment().apply {
+                    arguments = bundle.apply {
+                        putInt("year", year1)
+                        putInt("month", month1)
+                        putInt("day", day1)
+                    }
+                }).addToBackStack(null).commit()
             }
         }
     }

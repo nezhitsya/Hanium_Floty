@@ -28,23 +28,39 @@ class DiaryDetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_diary_detail, container, false)
 
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+        val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        diaryid = preferences.getString("diaryid", "none").toString()
+
         var edit: RelativeLayout = view.findViewById(R.id.edit)
         var delete: RelativeLayout = view.findViewById(R.id.delete)
         var diaryImage: ImageView = view.findViewById(R.id.diary_img)
         diaryImage.visibility = View.GONE
 
-        edit.setOnClickListener {
+        var bundle = Bundle()
+        var year = arguments!!.getInt("year")
+        var month = arguments!!.getInt("month")
+        var day = arguments!!.getInt("day")
+        var year1 = year
+        var month1 = month
+        var day1 = day
+        var id = diaryid
 
+        edit.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WriteDiaryFragment().apply {
+                arguments = bundle.apply {
+                    putInt("year", year1)
+                    putInt("month", month1)
+                    putInt("day", day1)
+                    putString("id", id)
+                }
+            }).addToBackStack(null).commit()
         }
 
         delete.setOnClickListener {
             FirebaseDatabase.getInstance().getReference("Diary").child(diaryid).removeValue()
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CalendarFragment()).addToBackStack(null).commit()
         }
-
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
-        diaryid = preferences.getString("diaryid", "none").toString()
 
         diaryInfo()
 
@@ -73,10 +89,10 @@ class DiaryDetailFragment : Fragment() {
                         image.setImageResource(R.drawable.ic_sunny)
                     } else if (diary.weather == "cloudy") {
                         image.setImageResource(R.drawable.ic_cloudy)
-                    } else if (diary.weather == "rainy") {
-                        image.setImageResource(R.drawable.ic_rainy)
-                    } else {
+                    } else if (diary.weather == "snowy") {
                         image.setImageResource(R.drawable.ic_snowy)
+                    } else {
+                        image.setImageResource(R.drawable.ic_rainy)
                     }
                 }
             }
