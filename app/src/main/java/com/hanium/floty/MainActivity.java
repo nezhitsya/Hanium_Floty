@@ -1,6 +1,7 @@
 package com.hanium.floty;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -8,13 +9,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +36,9 @@ import com.hanium.floty.fragment.DictionaryFragment;
 import com.hanium.floty.fragment.HomeFragment;
 import com.hanium.floty.fragment.ProfileFragment;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -37,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
     TextView[] dots;
     LinearLayout dotsLayout;
     ConstraintLayout constraintLayout;
+
+    BluetoothAdapter bluetoothAdapter;
+    private final static int REQUEST_ENABLE_BT = 1;
+    public final static int MESSAGE_READ = 2;
+    private final static int CONNECTING_STATUS = 3;
+    Set<BluetoothDevice> pairedDevices;
+    ArrayAdapter<String> bluetoothArrayAdapter;
+    ArrayList<String> deviceAddressArray;
+    private BluetoothSocket bluetoothSocket = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.setVisibility(View.GONE);
         addDots(0);
         viewPager.addOnPageChangeListener(changeListener);
+
     }
 
     private BottomNavigationView.OnNavigationItemReselectedListener navigationItemSelectedListener
@@ -133,5 +155,41 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    private void bluetoothOn() {
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            Log.d("day", "bluetooth on!");
+        } else {
+            Log.d("day", "already on!")
+        }
+    }
+
+    private void discoverBluetooth() {
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+            Log.d("day", "stop discover");
+        } else {
+            if (bluetoothAdapter.isEnabled()) {
+                bluetoothArrayAdapter.clear();
+                bluetoothAdapter.startDiscovery();
+                registerReceiver(bluetoothReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+                Log.d("day", "start discover");
+            }
+        }
+    }
+
+    final BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_DEVICE);
+                bluetoothArrayAdapter.add(device.getName() + " " + device.getAddress());
+                bluetoothArrayAdapter.notifyDataSetChanged();
+            }
+        }
+    }
 
 }

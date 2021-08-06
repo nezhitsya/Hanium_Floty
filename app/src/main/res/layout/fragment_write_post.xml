@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="75dp"
     tools:context=".fragment.WritePostFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -24,28 +25,18 @@
                 android:hint="제목"
                 android:maxLines="1"
                 android:padding="15dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:background="@null"/>
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:layout_below="@id/title"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/colorOrange" />
+                android:background="@drawable/round_textview"/>
 
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="350dp"
                 android:layout_height="350dp"
-                android:layout_below="@id/line"
+                android:layout_below="@id/title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="20dp" />
 
             <EditText
                 android:id="@+id/post_content"
@@ -54,11 +45,11 @@
                 android:hint="내용"
                 android:layout_below="@id/photo"
                 android:inputType="textMultiLine"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:padding="15dp"
-                android:background="@null" />
+                android:background="@drawable/round_textview" />
 
         </RelativeLayout>
 

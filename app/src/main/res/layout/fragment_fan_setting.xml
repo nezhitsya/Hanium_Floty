@@ -9,46 +9,56 @@
         android:id="@+id/circle"
         android:layout_width="320dp"
         android:layout_height="320dp"
-        android:src="@drawable/fan"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="150dp"
+        android:src="@drawable/fan" />
+
+    <ImageView
+        android:id="@+id/alarm"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_alarm"
+        android:tint="@color/colorBlack"
+        android:layout_alignParentRight="true"
+        android:layout_margin="30dp" />
 
     <ImageView
         android:id="@+id/cloud"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_fan"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp" />
+        android:layout_marginTop="270dp"
+        android:src="@drawable/ic_fan" />
 
     <TextView
         android:id="@+id/onoff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ON"
-        android:textSize="20dp"
         android:layout_below="@+id/cloud"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="ON"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="30 %"
-        android:textSize="25dp"
         android:layout_below="@+id/circle"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true" />
+        android:text="30 %"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp" />
 
     <SeekBar
         android:id="@+id/range"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb_fan"
-        android:progressDrawable="@drawable/seekbar_bar_fan"
-        android:max="100"
         android:layout_below="@+id/percent"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
+        android:max="100"
+        android:progressDrawable="@drawable/seekbar_bar_fan"
+        android:thumb="@drawable/seekbar_thumb_fan" />
 
 </RelativeLayout>

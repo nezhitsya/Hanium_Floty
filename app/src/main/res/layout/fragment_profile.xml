@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="75dp"
     tools:context=".fragment.ProfileFragment">
 
     <TextView
@@ -154,110 +156,125 @@
         android:layout_marginTop="20dp"
         android:background="@color/colorGray" />
 
-    <RelativeLayout
-        android:id="@+id/community_container"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/community_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Community 💭"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="30dp" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_next"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="30dp" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line3"
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@+id/community_container"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/colorOrange"
+        android:outlineProvider="none"
+        android:layout_below="@id/line2"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorGray" />
+        android:layout_marginEnd="20dp">
 
-    <RelativeLayout
-        android:id="@+id/liked_container"
+        <RelativeLayout
+            android:id="@+id/community_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Community 💭"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="30dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_next"
+                android:tint="@color/colorWhite"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/liked_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Liked Post ♥️"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="30dp" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_next"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="30dp" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line4"
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@+id/liked_container"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/colorRed"
+        android:outlineProvider="none"
+        android:layout_below="@id/community_card"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorGray" />
+        android:layout_marginEnd="20dp">
 
-    <RelativeLayout
-        android:id="@+id/mypost_container"
+        <RelativeLayout
+            android:id="@+id/liked_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liked Post ♥️"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="30dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_next"
+                android:tint="@color/colorWhite"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mypost_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line4">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Post 😀️"
-            android:textColor="@color/colorBlack"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="30dp" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_next"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="30dp" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/line5"
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@+id/mypost_container"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="#FFC947"
+        android:outlineProvider="none"
+        android:layout_below="@id/liked_card"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorGray" />
+        android:layout_marginEnd="20dp">
+
+        <RelativeLayout
+            android:id="@+id/mypost_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Post 😀️"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="30dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_next"
+                android:tint="@color/colorWhite"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/logout"
