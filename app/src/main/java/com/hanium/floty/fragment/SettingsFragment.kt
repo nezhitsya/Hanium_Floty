@@ -1,46 +1,106 @@
 package com.hanium.floty.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
+import com.hanium.floty.model.Settings
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
 
-    lateinit var mReference: DatabaseReference
+    lateinit var firebaseUser: FirebaseUser
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        var first: CardView = view.findViewById(R.id.first)
-        var second: CardView = view.findViewById(R.id.second)
-        var third: CardView = view.findViewById(R.id.third)
-        var fourth: CardView = view.findViewById(R.id.fourth)
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
-        first.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WaterSettingFragment()).addToBackStack(null).commit()
-        }
-
-        second.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LightSettingFragment()).addToBackStack(null).commit()
-        }
+        getWater()
+        getLight()
+        getTemp()
+        getFan()
 
         return view
     }
 
     fun getWater() {
-        mReference = FirebaseDatabase.getInstance().getReference("Water")
+        var wReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Water").child(firebaseUser.uid)
 
-        mReference.addListenerForSingleValueEvent(object: ValueEventListener {
+        wReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                var setting: Settings = snapshot.getValue(Settings::class.java)!!
+
+                setting.let {
+                    Log.d("day", setting.rate.toString())
+                    water_percent.text = setting.rate.toString() + " %"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    fun getLight() {
+        var lReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Light").child(firebaseUser.uid)
+
+        lReference.addListenerForSingleValueEvent(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var setting: Settings? = snapshot.getValue(Settings::class.java)
+
+                setting?.let {
+                    light_percent.text = setting.rate.toString() + " %"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    fun getTemp() {
+        var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Temperature").child(firebaseUser.uid)
+
+        tReference.addListenerForSingleValueEvent(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var setting: Settings? = snapshot.getValue(Settings::class.java)
+
+                setting?.let {
+                    temp_percent.text = setting.rate.toString() + " ℃"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    fun getFan() {
+        var fReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Fan").child(firebaseUser.uid)
+
+        fReference.addListenerForSingleValueEvent(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var setting: Settings? = snapshot.getValue(Settings::class.java)
+
+                setting?.let {
+                    fan_percent.text = setting.rate.toString() + " %"
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

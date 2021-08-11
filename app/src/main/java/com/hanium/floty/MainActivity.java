@@ -1,14 +1,15 @@
 package com.hanium.floty;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -17,27 +18,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.hanium.floty.adapter.SettingAdapter;
 import com.hanium.floty.fragment.CalendarFragment;
 import com.hanium.floty.fragment.DictionaryFragment;
 import com.hanium.floty.fragment.HomeFragment;
 import com.hanium.floty.fragment.ProfileFragment;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
     public final static int MESSAGE_READ = 2;
     private final static int CONNECTING_STATUS = 3;
     Set<BluetoothDevice> pairedDevices;
-    ArrayAdapter<String> bluetoothArrayAdapter;
+    ArrayList<String> bluetoothArray;
     ArrayList<String> deviceAddressArray;
     private BluetoothSocket bluetoothSocket = null;
+    private Handler handler;
+    private static final UUID BT_MODULE_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +87,40 @@ public class MainActivity extends AppCompatActivity {
         addDots(0);
         viewPager.addOnPageChangeListener(changeListener);
 
+        String [] permissions = {
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
+
+        deviceAddressArray = new ArrayList<>();
+        bluetoothArray = new ArrayList<>();
+        bluetoothOn();
+        discoverBluetooth();
+
+        handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                if (msg.what == MESSAGE_READ) {
+                    String readMessage = null;
+
+                    try {
+                        readMessage = new String((byte[]) msg.obj, "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("day", readMessage);
+                }
+
+                if (msg.what == CONNECTING_STATUS) {
+                    if (msg.arg1 == 1) {
+                        Log.d("day", "connected");
+                    } else {
+                        Log.d("day", "fail to connect");
+                    }
+                }
+            }
+        };
     }
 
     private BottomNavigationView.OnNavigationItemReselectedListener navigationItemSelectedListener
@@ -157,22 +199,23 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void bluetoothOn() {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             Log.d("day", "bluetooth on!");
         } else {
-            Log.d("day", "already on!")
+            Log.d("day", "already on!");
         }
     }
 
     private void discoverBluetooth() {
         if (bluetoothAdapter.isDiscovering()) {
             bluetoothAdapter.cancelDiscovery();
+            Toast.makeText(this, "연결된 기기가 없습니다.", Toast.LENGTH_SHORT).show();
             Log.d("day", "stop discover");
         } else {
             if (bluetoothAdapter.isEnabled()) {
-                bluetoothArrayAdapter.clear();
                 bluetoothAdapter.startDiscovery();
                 registerReceiver(bluetoothReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
                 Log.d("day", "start discover");
@@ -185,11 +228,71 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                BluetoothDevice device = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_DEVICE);
-                bluetoothArrayAdapter.add(device.getName() + " " + device.getAddress());
-                bluetoothArrayAdapter.notifyDataSetChanged();
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+                bluetoothArray.add(device.getName());
+                deviceAddressArray.add(device.getAddress());
+
+                Log.d("day", bluetoothArray.size() + "");
+
+                for (int i = 0; i < bluetoothArray.size(); i++) {
+                    Log.d("day", bluetoothArray.toString());
+                    if (bluetoothArray.get(i).equals("Galaxy Fit2 (85F6)")) {
+                        String deviceName = bluetoothArray.get(i);
+                        String deviceAddress = deviceAddressArray.get(i);
+
+                        Log.d("day", "address " + deviceAddress + " name " + deviceName);
+
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                boolean fail = false;
+
+                                Log.d("day", "success");
+
+                                BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceName);
+
+                                try {
+                                    bluetoothSocket = createBluetoothSocket(device);
+                                } catch (IOException e) {
+                                    fail = true;
+                                    Log.d("day", "socket fail");
+                                }
+
+                                try {
+                                    bluetoothSocket.connect();
+                                } catch (IOException e) {
+                                    try {
+                                        fail = true;
+                                        bluetoothSocket.close();
+                                        handler.obtainMessage(CONNECTING_STATUS, -1, -1).sendToTarget();
+                                    } catch (IOException e1) {
+                                        Log.d("day", "socket create fail");
+                                    }
+                                }
+                                if (!fail) {
+
+                                }
+                            }
+                        }.start();
+                    } else {
+                        Log.d("day", "no connection!");
+                    }
+                }
+            } else {
+                Log.d("day", "fail");
             }
         }
+    };
+
+    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
+        try {
+            final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", UUID.class);
+            return (BluetoothSocket) m.invoke(device, BT_MODULE_UUID);
+        } catch (Exception e) {
+            Log.d("day", "Could not create Insecure RFComm Connection",e);
+        }
+        return  device.createRfcommSocketToServiceRecord(BT_MODULE_UUID);
     }
 
 }
