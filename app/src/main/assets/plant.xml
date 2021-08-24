@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <plant>
+        <plantkor>튤립</plantkor>
+        <planteng>Tulip</planteng>
+        <temp>0~5℃</temp>
+        <hum>0 ~ 30%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Ftulip.jpg?alt=media&token=ef2ea716-646e-4b27-981b-ebaaf6955406</imgurl>
+    </plant>
+    <plant>
+        <plantkor>장미</plantkor>
+        <planteng>Rose</planteng>
+        <temp>24~27℃</temp>
+        <hum>60 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Frose.jpg?alt=media&token=4bd5a93e-2aac-4d6a-8530-d0394a04d889</imgurl>
+    </plant>
+    <plant>
+        <plantkor>페퍼민트</plantkor>
+        <planteng>Peppermint</planteng>
+        <temp>16~22℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FPeppermint.png?alt=media&token=7cb8577c-fbee-4c9e-8d12-bd81814980f5</imgurl>
+    </plant>
+    <plant>
+        <plantkor>무늬산호수</plantkor>
+        <planteng>Ardisia pusilla 'Variegata'</planteng>
+        <temp>21~25℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FArdisia%20pusilla%20'Variegata'.jpg?alt=media&token=9c600a46-76f1-4a91-b6ff-3dc9acddf883</imgurl>
+    </plant>
+    <plant>
+        <plantkor>로즈마리</plantkor>
+        <planteng>Rosemary</planteng>
+        <temp>24~25℃</temp>
+        <hum>40 ~ 50%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FRosemary.jpg?alt=media&token=3bd75db1-d23a-41d1-929e-c6fca77dcc66</imgurl>
+    </plant>
+    <plant>
+        <plantkor>산세베리아</plantkor>
+        <planteng>Sansevieria</planteng>
+        <temp>21~25℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FSansevieria.jpg?alt=media&token=6a08b2e2-4da6-48e1-aeeb-b8a4afdd2538</imgurl>
+    </plant>
+    <plant>
+        <plantkor>상추</plantkor>
+        <planteng>Lettuce</planteng>
+        <temp>15~25℃</temp>
+        <hum>60 ~ 80%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FLettuce.jpg?alt=media&token=4cd4af7b-aa60-4da7-b6f4-817ec08fe593</imgurl>
+    </plant>
+    <plant>
+        <plantkor>스투키</plantkor>
+        <planteng>Sansevieria stuckyi</planteng>
+        <temp>18~25℃</temp>
+        <hum>0 ~ 20%</hum>
+        <imgurl></imgurl>
+    </plant>
+    <plant>
+        <plantkor>십이지권</plantkor>
+        <planteng>Haworthia fasciata</planteng>
+        <temp>18~22℃</temp>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FHaworthia%20fasciata.jpg?alt=media&token=aacdc304-ff53-4aff-aed8-5b50b7ea5290</imgurl>
+    </plant>
+    <plant>
+        <plantkor>율마</plantkor>
+        <planteng>Monterey cypress</planteng>
+        <temp>16~20°C</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FMonterey%20cypress.jpg?alt=media&token=efaaad6f-9b39-4961-9c26-59b79f7e23e4</imgurl>
+    </plant>
+    <plant>
+        <plantkor>수국</plantkor>
+        <planteng>Bigleaf hydrangea</planteng>
+        <temp>18~25℃</temp>
+        <hum>60 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FBigleaf%20hydrangea.jpg?alt=media&token=af7021d0-d085-4aeb-afb0-4d46f8bfeb2b</imgurl>
+    </plant>
+    <plant>
+        <plantkor>테이블야자</plantkor>
+        <planteng>Chamaedorea elegans</planteng>
+        <temp>21~25℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FChamaedorea%20elegans.jpg?alt=media&token=ca99d8db-ebd5-4bce-a3ec-26fdadd1c62b</imgurl>
+    </plant>
+    <plant>
+        <plantkor>자금우</plantkor>
+        <planteng>Marberry</planteng>
+        <temp>16~20℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FMarberry.jpg?alt=media&token=102401c4-4f3a-4404-b080-2c8d836a6d50</imgurl>
+    </plant>
+    <plant>
+        <plantkor>커피나무</plantkor>
+        <planteng>Coffee arabica</planteng>
+        <temp>21~25℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FCoffea%20arabica.jpg?alt=media&token=2ddfc1d0-3286-4cba-92a5-ce29fb37f825</imgurl>
+    </plant>
+    <plant>
+        <plantkor>유칼립투스</plantkor>
+        <planteng>Gum tree</planteng>
+        <temp>18~30℃</temp>
+        <hum>40 ~ 50%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FGum%20tree.jpg?alt=media&token=30ddb198-37ad-413b-850e-30f861467568</imgurl>
+    </plant>
+    <plant>
+        <plantkor>해피트리</plantkor>
+        <planteng>Fragrant Aralia</planteng>
+        <temp>생육온도: 21~25도
+            최저온도: 13도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FFragrant%20Aralia.jpg?alt=media&token=8a38af91-e0a2-42d3-8834-bd8649815723</imgurl>
+    </plant>
+    <plant>
+        <plantkor>금사철</plantkor>
+        <planteng>goldheart euonymus</planteng>
+        <temp>생육온도: 16~20도
+            최저온도: 0도 이하</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fgoldheart%20euonymus.jpg?alt=media&token=d68b0bd4-9517-4686-b724-744f9c0b05a2</imgurl>
+    </plant>
+    <plant>
+        <plantkor>황금죽</plantkor>
+        <planteng>belgian evergreen, lucky bamboo</planteng>
+        <temp>생육온도: 16~20도
+            최저온도: 13도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fbelgian%20evergreen.jpg?alt=media&token=70a94ba3-0781-47fb-b4b8-afb9cfa229d3</imgurl>
+    </plant>
+    <plant>
+        <plantkor>방울 토마토</plantkor>
+        <planteng>cherry tomato</planteng>
+        <temp>생육온도: 25~27도
+            최저온도: 5도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fcherry%20tomato.jpg?alt=media&token=c4dd5073-9c08-4045-a5fb-080996695f02</imgurl>
+    </plant>
+    <plant>
+        <plantkor>싱고니움</plantkor>
+        <planteng>goose foot</planteng>
+        <temp>생육온도: 21~25도
+            최저온도: 10도</temp>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fgoose%20foot.jpg?alt=media&token=8ceb9a26-0909-4754-987f-0e8e967fe1a4</imgurl>
+    </plant>
+    <plant>
+        <plantkor>금전수</plantkor>
+        <planteng>eternity plant, fat boy, aroid palm,
+            arum fern, ZZ plant</planteng>
+        <temp>생육온도: 16~20도
+            최저온도: 13도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Feternity%20plant.jpg?alt=media&token=dac60598-df45-4970-a428-031fa2b52877</imgurl>
+    </plant>
+    <plant>
+        <plantkor>아이비</plantkor>
+        <planteng>Hedera helix</planteng>
+        <temp>생육온도 : 16~20℃</temp>
+        <hum>40 ~ 70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FHedera%20helix.jpg?alt=media&token=0ee9bee6-3869-439a-9385-75bdcc22c565</imgurl>
+    </plant>
+    <plant>
+        <plantkor>안수리움</plantkor>
+        <planteng>common anthurium, flamingo flower,
+            oilcloth flower, painters palette</planteng>
+        <temp>생육온도: 21~25도
+            최저온도: 13도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fpainters%20palette.jpg?alt=media&token=207019e0-86e9-4c88-8a82-04a75f2ef3df</imgurl>
+    </plant>
+    <plant>
+        <plantkor>포인세티아</plantkor>
+        <planteng>poinsettia</planteng>
+        <temp>주간: 24도 내외
+            야간: 18도 내외</temp>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fpoinsettia.jpg?alt=media&token=127a1b10-df30-4009-889a-f6e1ab871fa2</imgurl>
+    </plant>
+    <plant>
+        <plantkor>꽃기린</plantkor>
+        <planteng>crown of thorns</planteng>
+        <temp>생육온도: 10도 이상
+            최저온도: 3~5도</temp>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fcrown%20of%20thorns.jpg?alt=media&token=de59ce7f-4d83-41e3-bcb1-de02ea5e7dbe</imgurl>
+    </plant>
+    <plant>
+        <plantkor>행운목</plantkor>
+        <planteng>corn plant, fragrant dracaena</planteng>
+        <temp>생육온도: 21~25도
+            최저온도: 13도 이상</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fcorn%20plant.jpg?alt=media&token=ff6d0737-7a4d-42db-860d-41212d435570</imgurl>
+    </plant>
+    <plant>
+        <plantkor>국화</plantkor>
+        <planteng>chrysanthemum</planteng>
+        <temp>생육온도: 15~20도</temp>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fchrysanthemum.jpg?alt=media&token=93d08dfd-7ac6-4331-b979-fdbc2c9a19ef</imgurl>
+    </plant>
+    <plant>
+        <plantkor>제라니움</plantkor>
+        <planteng>geranium, fish geranium</planteng>
+        <temp>생육온도: 21~25도
+            최저온도: 10도</temp>
+        <hum>40~70%</hum>
+        <imgurl>https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Fgeranium.jpg?alt=media&token=d5d7a68c-5668-4558-ae5f-7ae8b5ea274f</imgurl>
+    </plant>
+</root>
