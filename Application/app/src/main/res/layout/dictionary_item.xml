@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
     <ImageView
         android:id="@+id/plant_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_flower_green"
-        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp" />
+        android:src="@drawable/ic_flower_green"
+        app:layout_constraintDimensionRatio="1:1" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
