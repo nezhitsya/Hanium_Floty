@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_pic_search.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.109375" />
         <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dictionary_detail.xml" value="0.20572865157337836" />
@@ -10,6 +11,7 @@
         <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.11458333333333333" />
         <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="0.11458333333333333" />
         <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.11458333333333333" />
+        <entry key="app/src/main/res/layout/recognition_item.xml" value="0.10840932117527863" />
         <entry key="app/src/main/res/xml/plant.xml" value="0.109375" />
       </map>
     </option>

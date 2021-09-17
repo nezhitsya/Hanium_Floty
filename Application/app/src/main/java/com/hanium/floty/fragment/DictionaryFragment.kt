@@ -10,16 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanium.floty.R
-import com.hanium.floty.adapter.DiaryListAdapter
 import com.hanium.floty.adapter.DictionaryAdapter
-import com.hanium.floty.model.Diary
 import com.hanium.floty.model.Plant
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.IOException
-import java.io.InputStream
-import java.lang.Exception
 
 class DictionaryFragment : Fragment() {
 
