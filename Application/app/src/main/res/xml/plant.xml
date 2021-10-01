@@ -1,0 +1,23 @@
+<plants>
+    <plant
+        plantkor="튤립"
+        planteng="Tulip"
+        temp="0 ~ 5 ℃"
+        hum="0 ~ 30 %"
+        imgurl="https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Ftulip.jpg?alt=media&amp;token=ef2ea716-646e-4b27-981b-ebaaf6955406"
+    />
+    <plant
+        plantkor="장미"
+        planteng="Rose"
+        temp="24 ~ 27 ℃"
+        hum="60 ~ 70 %"
+        imgurl="https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2Frose.jpg?alt=media&amp;token=4bd5a93e-2aac-4d6a-8530-d0394a04d889"
+    />
+    <plant
+        plantkor="페퍼민트"
+        planteng="Peppermint"
+        temp="16 ~ 22 ℃"
+        hum="40 ~ 70 %"
+        imgurl="https://firebasestorage.googleapis.com/v0/b/floty-daee1.appspot.com/o/dict%2FPeppermint.png?alt=media&amp;token=7cb8577c-fbee-4c9e-8d12-bd81814980f5"
+    />
+</plants>

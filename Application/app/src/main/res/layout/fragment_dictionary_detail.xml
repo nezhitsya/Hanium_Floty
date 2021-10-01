@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#57837B"
+    android:paddingBottom="75dp"
+    tools:context=".fragment.DictionaryDetailFragment">
+
+    <TextView
+        android:id="@+id/plant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="식물 이름"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/plant_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/example"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/plant_name"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="#59FFFFFF"
+        android:outlineProvider="none"
+        android:layout_below="@id/plant_image"
+        android:layout_margin="20dp">
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
