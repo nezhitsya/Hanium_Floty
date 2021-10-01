@@ -17,23 +17,6 @@
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/search_container"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/page_name"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:id="@+id/search_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:queryHint="Search"-->
-<!--            app:iconifiedByDefault="true"-->
-<!--            android:layout_margin="10dp" />-->
-
-<!--    </LinearLayout>-->
-
     <TextView
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"

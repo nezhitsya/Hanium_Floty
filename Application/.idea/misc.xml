@@ -3,14 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/round_button.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb_fan.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb_light.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb_water.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/thumb_selector.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/thumb_selector_fan.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/thumb_selector_light.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/thumb_selector_temp.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/thumb_selector_water.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/track_selector.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/drawable/track_selector_fan.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/track_selector_light.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/track_selector_temp.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/track_selector_water.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/layout/activity_pic_search.xml" value="0.11005434782608696" />
-        <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.109375" />
-        <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_dictionary_detail.xml" value="0.20572865157337836" />
-        <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.11458333333333333" />
-        <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.11458333333333333" />
-        <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="0.11458333333333333" />
-        <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.11458333333333333" />
+        <entry key="app/src/main/res/layout/diary_item.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.16529248756960446" />
+        <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.23108401880991955" />
+        <entry key="app/src/main/res/layout/fragment_dictionary_detail.xml" value="0.268327206301319" />
+        <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.32722949588935507" />
+        <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.18615342231428947" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.15217391304347827" />
+        <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="1.0834084593770816" />
+        <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.40963855421686746" />
         <entry key="app/src/main/res/layout/recognition_item.xml" value="0.10840932117527863" />
         <entry key="app/src/main/res/xml/plant.xml" value="0.109375" />
       </map>

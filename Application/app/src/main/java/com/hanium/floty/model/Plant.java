@@ -7,6 +7,9 @@ public class Plant {
     String temp;
     String hum;
     String imgurl;
+    String detail;
+    String water;
+    String waterDetail;
 
     public String getPlantkor() {
         return plantkor;
@@ -46,6 +49,30 @@ public class Plant {
 
     public void setImgurl(String imgurl) {
         this.imgurl = imgurl;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public String getWater() {
+        return water;
+    }
+
+    public void setWater(String water) {
+        this.water = water;
+    }
+
+    public String getWaterDetail() {
+        return waterDetail;
+    }
+
+    public void setWaterDetail(String waterDetail) {
+        this.waterDetail = waterDetail;
     }
 
 }
