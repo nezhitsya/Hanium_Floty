@@ -1,14 +1,20 @@
 package com.hanium.floty.fragment
 
+import android.content.Intent
 import android.content.res.AssetManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hanium.floty.PicSearchActivity
 import com.hanium.floty.R
 import com.hanium.floty.adapter.DictionaryAdapter
 import com.hanium.floty.model.Plant
@@ -21,11 +27,35 @@ class DictionaryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var plantList = arrayListOf<Plant>()
+    var searchList = arrayListOf<Plant>()
+    var beforeSearchList = arrayListOf<Plant>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         var view: View = inflater.inflate(R.layout.fragment_dictionary, container, false)
+
+        var search: EditText = view.findViewById(R.id.search_bar)
+        var imageSearch: ImageView = view.findViewById(R.id.search_image)
+
+        search.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchPlant(s.toString().toLowerCase())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+
+        imageSearch.setOnClickListener {
+            val intent = Intent(getActivity(), PicSearchActivity::class.java)
+            startActivity(intent)
+        }
 
         try {
             var xpp: XmlPullParser = resources.getXml(R.xml.plant)
@@ -54,11 +84,11 @@ class DictionaryFragment : Fragment() {
                         plant.waterDetail = xpp.getAttributeValue(7)
 
                         plantList.add(plant)
+                        beforeSearchList.add(plant)
                     }
                 }
                 xpp.next()
             }
-            Log.e("MY_VALUE", plantList.toString())
         } catch (e: XmlPullParserException) {
             e.printStackTrace()
         } catch (e: IOException) {
@@ -72,11 +102,32 @@ class DictionaryFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        val adapter = DictionaryAdapter(context!!, plantList)
+        val adapter = DictionaryAdapter(context!!, beforeSearchList)
         recyclerView?.adapter = adapter
         adapter.notifyDataSetChanged()
 
         return view
+    }
+
+    private fun searchPlant(s: String) {
+        if (s == "") {
+            beforeSearchList.clear()
+
+            val adapter = DictionaryAdapter(context!!, plantList)
+            recyclerView?.adapter = adapter
+            adapter.notifyDataSetChanged()
+        } else {
+            searchList.clear()
+            for (i in 0 until plantList.size) {
+                if (plantList[i].plantkor.contains(s)) {
+                    searchList.add(plantList[i])
+                }
+            }
+
+            val adapter = DictionaryAdapter(context!!, searchList)
+            recyclerView?.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
     }
 
 }

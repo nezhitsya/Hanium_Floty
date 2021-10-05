@@ -17,6 +17,36 @@
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true" />
 
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page_name"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:hint="Search"/>
+
+        <ImageView
+            android:id="@+id/search_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photo" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"
@@ -24,7 +54,7 @@
         android:text="추천 식물"
         android:textSize="9dp"
         android:layout_margin="10dp"
-        android:layout_below="@id/page_name" />
+        android:layout_below="@id/search_container" />
 
     <LinearLayout
         android:id="@+id/cardnews"
