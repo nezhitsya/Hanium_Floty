@@ -69,4 +69,4 @@ public class SearchAdapter extends BaseAdapter {
         public TextView label;
     }
 
-}}
+}

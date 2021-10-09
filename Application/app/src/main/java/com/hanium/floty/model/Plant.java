@@ -51,10 +51,10 @@ public class Plant {
         this.imgurl = imgurl;
     }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 }
-=======
+//=======
     public String getDetail() {
         return detail;
     }
@@ -80,4 +80,4 @@ public class Plant {
     }
 
 }
->>>>>>> f6e29ec711d7f449b563be5e2945042611749691
+//>>>>>>> f6e29ec711d7f449b563be5e2945042611749691

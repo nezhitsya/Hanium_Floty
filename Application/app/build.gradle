@@ -37,6 +37,7 @@ android {
         dataBinding = true
         mlModelBinding true
     }
+
 }
 
 repositories {
@@ -96,4 +97,6 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.1.0"
     // TODO 5: Optional GPU Delegates
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
+
+
 }
