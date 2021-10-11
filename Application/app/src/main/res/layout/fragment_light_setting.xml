@@ -6,15 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.WaterSettingFragment">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:thumb="@drawable/thumb_selector_light"
-        app:track="@drawable/track_selector_light"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
-
     <ImageView
         android:id="@+id/circle"
         android:layout_width="320dp"
@@ -44,22 +35,53 @@
         android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="30 %"
-        android:textSize="25dp"
-        android:textColor="@color/colorBlack"
         android:layout_below="@+id/circle"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="30 %"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="led 밝기"
+        android:textColor="@color/colorBlack"
+        android:layout_below="@id/percent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp" />
 
     <SeekBar
         android:id="@+id/range"
-        android:layout_width="350dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:thumb="@drawable/seekbar_thumb_light"
         android:progressDrawable="@drawable/seekbar_bar_light"
         android:max="100"
         android:layout_below="@+id/percent"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가동 조도"
+        android:textColor="@color/colorBlack"
+        android:layout_below="@id/range"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp" />
+
+    <SeekBar
+        android:id="@+id/light_range"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:thumb="@drawable/seekbar_thumb_light"
+        android:progressDrawable="@drawable/seekbar_bar_light"
+        android:max="1000"
+        android:layout_below="@+id/range"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

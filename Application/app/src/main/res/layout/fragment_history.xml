@@ -43,11 +43,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="습도"
-                    android:textColor="@color/colorBlack"
-                    android:layout_toRightOf="@id/water_img"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/water_img"
+                    android:text="토양 습도"
+                    android:textColor="@color/colorBlack" />
 
             </RelativeLayout>
 
@@ -76,11 +76,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="조도"
-                    android:textColor="@color/colorBlack"
-                    android:layout_toRightOf="@id/light_img"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/light_img"
+                    android:text="조도"
+                    android:textColor="@color/colorBlack" />
 
             </RelativeLayout>
 
@@ -109,11 +109,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="온도"
-                    android:textColor="@color/colorBlack"
-                    android:layout_toRightOf="@id/temp_img"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/temp_img"
+                    android:text="온도"
+                    android:textColor="@color/colorBlack" />
 
             </RelativeLayout>
 
@@ -142,11 +142,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="팬 강도"
-                    android:textColor="@color/colorBlack"
-                    android:layout_toRightOf="@id/fan_img"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/fan_img"
+                    android:text="공기 중 습도"
+                    android:textColor="@color/colorBlack" />
 
             </RelativeLayout>
 

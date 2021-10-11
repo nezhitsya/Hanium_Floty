@@ -7,6 +7,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.CalendarFragment">
 
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:mwhCloseColor="@color/colorLightYellow"
+        app:mwhColorAlpha="0.3"
+        app:mwhGradientAngle="45"
+        app:mwhIsRunning="true"
+        app:mwhProgress="1"
+        app:mwhStartColor="@color/colorBlue"
+        app:mwhVelocity="4"
+        app:mwhWaveHeight="100dp"
+        app:mwhWaves="MultiWave" />
+
     <TextView
         android:id="@+id/page_name"
         android:layout_width="wrap_content"
@@ -18,19 +32,61 @@
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true" />
 
+    <RelativeLayout
+        android:id="@+id/today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/page_name"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/today_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="10dp"
+            android:text="01"
+            android:textSize="60dp"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/today_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/today_date"
+            android:text="10"
+            android:textColor="@color/colorBlack"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/today_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/today_date"
+            android:layout_below="@id/today_month"
+            android:text="2021"
+            android:textSize="25dp"
+            android:textColor="@color/colorBlack" />
+
+    </RelativeLayout>
+
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:mcv_tileSize="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/page_name"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/today"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
-        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"
         app:mcv_arrowColor="@color/colorGreen"
+        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"
         app:mcv_selectionColor="@color/colorLightGray"
-        app:mcv_showOtherDates="all" />
+        app:mcv_showOtherDates="all"
+        app:mcv_tileHeight="60dp" />
+
+<!--    app:mcv_tileSize="match_parent"-->
 
 </RelativeLayout>

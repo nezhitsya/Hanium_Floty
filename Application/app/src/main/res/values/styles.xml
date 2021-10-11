@@ -10,7 +10,7 @@
     </style>
 
     <style name="CalendarWidgetHeader">
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">15dp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 

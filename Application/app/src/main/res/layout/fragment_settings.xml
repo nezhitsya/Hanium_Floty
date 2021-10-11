@@ -6,128 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SettingsFragment">
 
-    <TextView
-        android:id="@+id/page_name"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="Settings"
-        android:textColor="@color/colorBlack"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/first"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="120dp"
-        app:cardCornerRadius="20dp">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ic_cloudy" />
+        android:paddingBottom="70dp"
+        android:background="@drawable/top_corner_radius">
 
         <TextView
-            android:id="@+id/water_percent"
+            android:id="@+id/page_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="150dp"
-            android:text=" %"
-            android:textColor="@color/colorBlack"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Settings"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/auto_onoff"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_below="@id/page_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/circle_button"
+            android:text="ON"
+            android:textColor="@color/colorDarkGray"
             android:textSize="25dp" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/first"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/auto_onoff"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/zxing_transparent"
+            android:outlineSpotShadowColor="@color/colorWhite"
+            app:cardCornerRadius="20dp">
 
-    </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/second"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginRight="30dp"
-        app:cardCornerRadius="20dp">
+                <ImageView
+                    android:id="@+id/first_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_cloudy" />
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ic_sunny" />
+                <TextView
+                    android:id="@+id/water_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/first_img"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:text=" %"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
 
-        <TextView
-            android:id="@+id/light_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="150dp"
-            android:text=" %"
-            android:textColor="@color/colorBlack"
-            android:textSize="25dp" />
+            </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/third"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:layout_below="@+id/first"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="20dp">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/second"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/auto_onoff"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/first"
+            android:backgroundTint="@color/zxing_transparent"
+            android:outlineSpotShadowColor="@color/colorWhite"
+            app:cardCornerRadius="20dp">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/temp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/temp_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="150dp"
-            android:text=" ℃"
-            android:textColor="@color/colorBlack"
-            android:textSize="25dp" />
+                <ImageView
+                    android:id="@+id/second_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_sunny" />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/light_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/second_img"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:text=" %"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fourth"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:layout_below="@+id/second"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        app:cardCornerRadius="20dp">
+            </RelativeLayout>
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ic_fan" />
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/fan_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="150dp"
-            android:text=" %"
-            android:textColor="@color/colorBlack"
-            android:textSize="25dp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/third"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/auto_onoff"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/second"
+            android:backgroundTint="@color/zxing_transparent"
+            android:outlineSpotShadowColor="@color/colorWhite"
+            app:cardCornerRadius="20dp">
 
-    </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/third_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/temp" />
+
+                <TextView
+                    android:id="@+id/temp_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/third_img"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:text=" ℃"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

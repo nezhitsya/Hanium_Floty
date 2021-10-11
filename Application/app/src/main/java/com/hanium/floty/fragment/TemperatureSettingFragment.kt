@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
-import com.hanium.floty.model.Settings
+import com.hanium.floty.model.TempHum
 import kotlinx.android.synthetic.main.fragment_temperature_setting.*
 
 class TemperatureSettingFragment : Fragment() {
@@ -28,6 +28,7 @@ class TemperatureSettingFragment : Fragment() {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         var seekbar_temp: SeekBar = view.findViewById(R.id.range)
+        var seekbar_time: SeekBar = view.findViewById(R.id.time_range)
         var percent: TextView = view.findViewById(R.id.percent)
         var tempImg: ImageView = view.findViewById(R.id.cloud)
         var onoffTxt: TextView = view.findViewById(R.id.onoff)
@@ -47,6 +48,18 @@ class TemperatureSettingFragment : Fragment() {
             }
         })
 
+        seekbar_time.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                updateTime(seekBar!!.progress)
+            }
+        })
+
         tempImg.setOnClickListener {
             updateOnoff()
         }
@@ -61,17 +74,17 @@ class TemperatureSettingFragment : Fragment() {
     }
 
     fun loadRate() {
-        mReference = FirebaseDatabase.getInstance().getReference("Temperature").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
 
         val tempListener = object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings? = snapshot.getValue(Settings::class.java)
+                var setting: TempHum? = snapshot.getValue(TempHum::class.java)
 
                 setting?.let {
-                    range.setProgress(setting.rate)
-                    percent.text = setting.rate.toString() + " ℃"
+                    range.setProgress(setting.temp_auto_set)
+                    percent.text = setting.temp_auto_set.toString() + " ℃"
 
-                    if (setting.onoff.equals(true)) {
+                    if (setting.fan_onoff.equals("on")) {
                         onoff.text = "ON"
                     } else {
                         onoff.text = "OFF"
@@ -88,21 +101,28 @@ class TemperatureSettingFragment : Fragment() {
     }
 
     fun updateRate(rateVal: Int) {
-        mReference = FirebaseDatabase.getInstance().getReference("Temperature").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["rate"] = rateVal
+        hashMap["temp_auto_set"] = rateVal
+        mReference.updateChildren(hashMap)
+    }
+
+    fun updateTime(rateVal: Int) {
+        mReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["fan_uptime"] = rateVal
         mReference.updateChildren(hashMap)
     }
 
     fun updateOnoff() {
-        mReference = FirebaseDatabase.getInstance().getReference("Temperature").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
 
         val hashMap: HashMap<String, Any> = HashMap()
         if (onoff.text == "ON") {
-            hashMap["onoff"] = false
+            hashMap["fan_onoff"] = false
             onoff.text = "OFF"
         } else {
-            hashMap["onoff"] = true
+            hashMap["fan_onoff"] = true
             onoff.text = "ON"
         }
         mReference.updateChildren(hashMap)

@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addDots(int position) {
-        dots = new TextView[5];
+        dots = new TextView[4];
         dotsLayout.removeAllViews();
 
         for(int i = 0; i < dots.length; i++) {

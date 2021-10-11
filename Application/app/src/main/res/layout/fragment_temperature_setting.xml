@@ -6,20 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.TemperatureSettingFragment">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:thumb="@drawable/thumb_selector_temp"
-        app:track="@drawable/track_selector_temp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
-
     <ImageView
         android:id="@+id/circle"
         android:layout_width="320dp"
         android:layout_height="320dp"
-        android:src="@drawable/temp_circle"
+        android:src="@drawable/fan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"/>
 
@@ -29,7 +20,7 @@
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp"
-        android:src="@drawable/temp" />
+        android:src="@drawable/ic_fan" />
 
     <TextView
         android:id="@+id/onoff"
@@ -44,24 +35,57 @@
         android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" ℃"
-        android:textSize="25dp"
-        android:textColor="@color/colorBlack"
         android:layout_below="@+id/circle"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text=" ℃"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가동 온도"
+        android:textColor="@color/colorBlack"
+        android:layout_below="@id/percent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp" />
 
     <SeekBar
         android:id="@+id/range"
-        android:layout_width="350dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb_temp"
-        android:progressDrawable="@drawable/seekbar_bar_temp"
-        android:progress="-20"
+        android:layout_below="@+id/percent"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:max="40"
         android:min="-20"
-        android:layout_below="@+id/percent"
+        android:progress="-20"
+        android:progressDrawable="@drawable/seekbar_bar_temp"
+        android:thumb="@drawable/seekbar_thumb_temp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가동 시간"
+        android:textColor="@color/colorBlack"
+        android:layout_below="@id/range"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="30dp" />
+
+    <SeekBar
+        android:id="@+id/time_range"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/range"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:max="10000"
+        android:min="0"
+        android:progress="-20"
+        android:progressDrawable="@drawable/seekbar_bar_fan"
+        android:thumb="@drawable/seekbar_thumb_fan" />
 
 </RelativeLayout>

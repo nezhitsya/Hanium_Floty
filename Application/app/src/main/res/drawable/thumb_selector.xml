@@ -5,19 +5,17 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/colorLightBlue" />
+                    <solid android:color="@color/colorOrange" />
                     <corners android:radius="100dp" />
                     <size android:width="24dp" android:height="24dp" />
-                    <stroke android:width="10dp" android:color="@color/colorLightBlue" />
+                    <stroke android:width="10dp" android:color="@color/colorOrange" />
                 </shape>
             </item>
 
-            <item android:drawable="@drawable/ic_cloudy"
-                android:bottom="2dp"
-                android:top="2dp"
-                android:left="2dp"
-                android:right="2dp" />
+            <item android:drawable="@drawable/pot"
+                android:width="15dp"
+                android:height="15dp"
+                android:gravity="center" />
         </layer-list>
     </item>
-
 </selector>

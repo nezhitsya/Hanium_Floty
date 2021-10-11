@@ -72,6 +72,10 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(context!!, EditProfileActivity::class.java))
         }
 
+        bookmark.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, BookmarkFragment()).addToBackStack(null).commit()
+        }
+
         diary.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiaryListFragment()).addToBackStack(null).commit()
         }

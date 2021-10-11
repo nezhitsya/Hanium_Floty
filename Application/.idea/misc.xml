@@ -3,15 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bottom_corner_radius.xml" value="0.21944444444444444" />
+        <entry key="app/src/main/res/drawable/circle_button.xml" value="0.21666666666666667" />
+        <entry key="app/src/main/res/drawable/ic_bookmark.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/drawable/ic_not_bookmark.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/seekbar_bar_fan.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/drawable/seekbar_bar_light.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/drawable/seekbar_bar_temp.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/drawable/seekbar_bar_water.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/drawable/seekbar_thumb_fan.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/seekbar_thumb_light.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/seekbar_thumb_temp.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/drawable/seekbar_thumb_water.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/thumb_selector.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/thumb_selector_fan.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/thumb_selector_light.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/thumb_selector_temp.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/thumb_selector_water.xml" value="0.19814814814814816" />
+        <entry key="app/src/main/res/drawable/top_corner_radius.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/track_selector.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/drawable/track_selector_fan.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/track_selector_light.xml" value="0.19814814814814816" />
@@ -20,13 +30,16 @@
         <entry key="app/src/main/res/layout/activity_pic_search.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/diary_item.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.16529248756960446" />
+        <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.12931802418189506" />
         <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.23108401880991955" />
         <entry key="app/src/main/res/layout/fragment_dictionary_detail.xml" value="0.268327206301319" />
-        <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.32722949588935507" />
-        <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.18615342231428947" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.15217391304347827" />
-        <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="1.0834084593770816" />
-        <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.33359688062470566" />
+        <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.1703751495680824" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.1793478260869565" />
+        <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.20869629594363448" />
+        <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.21314357185948565" />
         <entry key="app/src/main/res/layout/recognition_item.xml" value="0.10840932117527863" />
         <entry key="app/src/main/res/xml/plant.xml" value="0.109375" />
       </map>

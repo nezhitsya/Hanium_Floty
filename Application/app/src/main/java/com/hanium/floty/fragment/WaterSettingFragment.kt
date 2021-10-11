@@ -13,15 +13,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
-import com.hanium.floty.adapter.ConnectedThread
-import com.hanium.floty.model.Settings
+import com.hanium.floty.model.SoilTemp
 import kotlinx.android.synthetic.main.fragment_water_setting.*
 
 class WaterSettingFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
     lateinit var mReference: DatabaseReference
-    lateinit var connectedThread: ConnectedThread
+//    lateinit var connectedThread: ConnectedThread
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -30,6 +29,7 @@ class WaterSettingFragment : Fragment() {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         var seekbar_water: SeekBar = view.findViewById(R.id.range)
+        var seekBar_time: SeekBar = view.findViewById(R.id.time_range)
         var percent: TextView = view.findViewById(R.id.percent)
         var cloudImg: ImageView = view.findViewById(R.id.cloud)
         var onoffTxt: TextView = view.findViewById(R.id.onoff)
@@ -53,6 +53,18 @@ class WaterSettingFragment : Fragment() {
             }
         })
 
+        seekBar_time.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                updateTime(seekBar!!.progress)
+            }
+        })
+
         cloudImg.setOnClickListener {
             updateOnoff()
         }
@@ -67,17 +79,17 @@ class WaterSettingFragment : Fragment() {
     }
 
     fun loadRate() {
-        mReference = FirebaseDatabase.getInstance().getReference("Water").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("soil_temp").child(firebaseUser.uid)
 
         val waterListener = object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings? = snapshot.getValue(Settings::class.java)
+                var setting: SoilTemp? = snapshot.getValue(SoilTemp::class.java)
 
                 setting?.let {
-                    range.setProgress(setting.rate)
-                    percent.text = setting.rate.toString() + " %"
+                    range.setProgress(setting.soil_auto_set)
+                    percent.text = setting.soil_auto_set.toString() + " %"
 
-                    if (setting.onoff.equals(true)) {
+                    if (setting.pump_onoff.equals("on")) {
                         onoff.text = "ON"
                     } else {
                         onoff.text = "OFF"
@@ -94,21 +106,28 @@ class WaterSettingFragment : Fragment() {
     }
 
     fun updateRate(rateVal: Int) {
-        mReference = FirebaseDatabase.getInstance().getReference("Water").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("soil_temp").child(firebaseUser.uid)
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["rate"] = rateVal
+        hashMap["soil_auto_set"] = rateVal
+        mReference.updateChildren(hashMap)
+    }
+
+    fun updateTime(rateVal: Int) {
+        mReference = FirebaseDatabase.getInstance().getReference("soil_temp").child(firebaseUser.uid)
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["pump_uptime"] = rateVal
         mReference.updateChildren(hashMap)
     }
 
     fun updateOnoff() {
-        mReference = FirebaseDatabase.getInstance().getReference("Water").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("soil_temp").child(firebaseUser.uid)
 
         val hashMap: HashMap<String, Any> = HashMap()
         if (onoff.text == "ON") {
-            hashMap["onoff"] = false
+            hashMap["pump_onoff"] = false
             onoff.text = "OFF"
         } else {
-            hashMap["onoff"] = true
+            hashMap["pump_onoff"] = true
             onoff.text = "ON"
         }
         mReference.updateChildren(hashMap)

@@ -1,48 +1,74 @@
 package com.hanium.floty.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
-import com.hanium.floty.model.Settings
+import com.hanium.floty.model.Illuminance
+import com.hanium.floty.model.Mode
+import com.hanium.floty.model.SoilTemp
+import com.hanium.floty.model.TempHum
+import kotlinx.android.synthetic.main.fragment_light_setting.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
+    lateinit var mReference: DatabaseReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_settings, container, false)
+
+        var onoff: Button = view.findViewById(R.id.auto_onoff)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         getWater()
         getLight()
         getTemp()
-        getFan()
+        getMode()
+
+        onoff.setOnClickListener {
+            updateOnoff()
+        }
 
         return view
     }
 
+    fun updateOnoff() {
+        mReference = FirebaseDatabase.getInstance().getReference("mode").child(firebaseUser.uid)
+
+        val hashMap: HashMap<String, Any> = HashMap()
+        if (auto_onoff.text == "ON") {
+            hashMap["auto_mode"] = false
+            hashMap["manual_mode"] = true
+            auto_onoff.text = "OFF"
+        } else {
+            hashMap["auto_mode"] = true
+            hashMap["manual_mode"] = false
+            auto_onoff.text = "ON"
+        }
+        mReference.updateChildren(hashMap)
+    }
+
     fun getWater() {
-        var wReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Water").child(firebaseUser.uid)
+        var wReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("soil_temp").child(firebaseUser.uid)
 
         wReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings = snapshot.getValue(Settings::class.java)!!
+                var setting: SoilTemp = snapshot.getValue(SoilTemp::class.java)!!
 
                 setting.let {
-                    Log.d("day", setting.rate.toString())
-                    water_percent.text = setting.rate.toString() + " %"
+                    water_percent.text = setting.soil_rate.toString() + " %"
                 }
             }
 
@@ -53,15 +79,15 @@ class SettingsFragment : Fragment() {
     }
 
     fun getLight() {
-        var lReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Light").child(firebaseUser.uid)
+        var lReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("illuminance").child(firebaseUser.uid)
 
         lReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings? = snapshot.getValue(Settings::class.java)
+                var setting: Illuminance? = snapshot.getValue(Illuminance::class.java)
 
                 setting?.let {
-                    light_percent.text = setting.rate.toString() + " %"
+                    light_percent.text = setting.cds_rate.toString() + " %"
                 }
             }
 
@@ -72,15 +98,15 @@ class SettingsFragment : Fragment() {
     }
 
     fun getTemp() {
-        var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Temperature").child(firebaseUser.uid)
+        var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
 
         tReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings? = snapshot.getValue(Settings::class.java)
+                var setting: TempHum? = snapshot.getValue(TempHum::class.java)
 
                 setting?.let {
-                    temp_percent.text = setting.rate.toString() + " ℃"
+                    temp_percent.text = setting.temp_rate.toString() + " ℃"
                 }
             }
 
@@ -90,16 +116,20 @@ class SettingsFragment : Fragment() {
         })
     }
 
-    fun getFan() {
-        var fReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Fan").child(firebaseUser.uid)
+    fun getMode() {
+        var mReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("mode").child(firebaseUser.uid)
 
-        fReference.addListenerForSingleValueEvent(object: ValueEventListener {
+        mReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var setting: Settings? = snapshot.getValue(Settings::class.java)
+                var setting: Mode? = snapshot.getValue(Mode::class.java)
 
                 setting?.let {
-                    fan_percent.text = setting.rate.toString() + " %"
+                    if (setting.auto_mode) {
+                        auto_onoff.text = "ON"
+                    } else {
+                        auto_onoff.text = "OFF"
+                    }
                 }
             }
 
