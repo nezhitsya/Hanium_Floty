@@ -40,27 +40,36 @@ class WaterSettingFragment : Fragment() {
 
         seekbar_water.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                percent.text = "$progress %"
+                var percentage = Math.round((progress * 100 / 1023).toDouble())
+                percent.text = "$percentage %"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                percent.text = "${seekBar!!.progress} %"
+                var percentage = Math.round((seekBar!!.progress * 100 / 1023).toDouble())
+                percent.text = "${percentage} %"
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                percent.text = "${seekBar!!.progress} %"
+                var percentage = Math.round((seekBar!!.progress * 100 / 1023).toDouble())
+                percent.text = "${percentage} %"
                 updateRate(seekBar!!.progress)
             }
         })
 
         seekBar_time.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                var percentage = progress / 1000
+                percent.text = "$percentage 초"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                var percentage = seekBar!!.progress / 1000
+                percent.text = "${percentage} 초"
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                var percentage = seekBar!!.progress / 1000
+                percent.text = "${percentage} 초"
                 updateTime(seekBar!!.progress)
             }
         })
@@ -87,7 +96,10 @@ class WaterSettingFragment : Fragment() {
 
                 setting?.let {
                     range.setProgress(setting.soil_auto_set)
-                    percent.text = setting.soil_auto_set.toString() + " %"
+                    time_range.setProgress(setting.pump_uptime)
+
+                    var percentage = Math.round((setting.soil_auto_set * 100 / 1023).toDouble())
+                    percent.text = percentage.toString() + " %"
 
                     if (setting.pump_onoff.equals("on")) {
                         onoff.text = "ON"

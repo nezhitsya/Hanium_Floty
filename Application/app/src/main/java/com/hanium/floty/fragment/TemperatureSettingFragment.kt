@@ -50,12 +50,18 @@ class TemperatureSettingFragment : Fragment() {
 
         seekbar_time.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                var percentage = progress / 1000
+                percent.text = "$percentage 초"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                var percentage = seekBar!!.progress / 1000
+                percent.text = "${percentage} 초"
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                var percentage = seekBar!!.progress / 1000
+                percent.text = "${percentage} 초"
                 updateTime(seekBar!!.progress)
             }
         })
@@ -82,6 +88,7 @@ class TemperatureSettingFragment : Fragment() {
 
                 setting?.let {
                     range.setProgress(setting.temp_auto_set)
+                    time_range.setProgress(setting.fan_uptime)
                     percent.text = setting.temp_auto_set.toString() + " ℃"
 
                     if (setting.fan_onoff.equals("on")) {

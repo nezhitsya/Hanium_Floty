@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -22,6 +26,10 @@ class SettingsFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
     lateinit var mReference: DatabaseReference
+    var soilEntry = ArrayList<PieEntry>()
+    var cdsEntry = ArrayList<PieEntry>()
+    var humEntry = ArrayList<PieEntry>()
+    var tempEntry = ArrayList<PieEntry>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -65,17 +73,48 @@ class SettingsFragment : Fragment() {
         wReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                soilEntry.clear()
                 var setting: SoilTemp = snapshot.getValue(SoilTemp::class.java)!!
 
                 setting.let {
-                    water_percent.text = setting.soil_rate.toString() + " %"
+                    var percentage = Math.round((setting.soil_rate * 100 / 1023).toDouble())
+                    soilEntry.add(PieEntry(percentage.toFloat(), ""))
+                    soilEntry.add(PieEntry((100 - percentage).toFloat(), ""))
+                    water_percent.text = "$percentage %"
                 }
+                waterGraph(soilEntry)
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+    }
+
+    fun waterGraph(waterEntry: ArrayList<PieEntry>) {
+        soil_chart.setUsePercentValues(true)
+
+        var colorsItem = ArrayList<Int>()
+        colorsItem.add(resources.getColor(R.color.colorBlue))
+        colorsItem.add(resources.getColor(R.color.colorLightGray))
+
+        var pieDataSet = PieDataSet(waterEntry, "")
+        pieDataSet.apply {
+            colors = colorsItem
+            setDrawValues(false)
+            sliceSpace = 3f
+        }
+
+        var pieData = PieData(pieDataSet)
+        soil_chart.apply {
+            data = pieData
+            description = null
+            centerText = "토양 습도"
+            legend.isEnabled = false
+            animateY(1400, Easing.EaseInOutQuad)
+            animate()
+            invalidate()
+        }
     }
 
     fun getLight() {
@@ -84,11 +123,16 @@ class SettingsFragment : Fragment() {
         lReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                cdsEntry.clear()
                 var setting: Illuminance? = snapshot.getValue(Illuminance::class.java)
 
                 setting?.let {
-                    light_percent.text = setting.cds_rate.toString() + " %"
+                    var percentage = Math.round((setting.cds_rate * 100 / 1023).toDouble())
+                    cdsEntry.add(PieEntry(percentage.toFloat(), ""))
+                    cdsEntry.add(PieEntry((100 - percentage).toFloat(), ""))
+                    light_percent.text = "$percentage %"
                 }
+                cdsGraph(cdsEntry)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -97,23 +141,110 @@ class SettingsFragment : Fragment() {
         })
     }
 
+    fun cdsGraph(lightEntry: ArrayList<PieEntry>) {
+        cds_chart.setUsePercentValues(true)
+
+        var colorsItem = ArrayList<Int>()
+        colorsItem.add(resources.getColor(R.color.colorYellow))
+        colorsItem.add(resources.getColor(R.color.colorLightGray))
+
+        var pieDataSet = PieDataSet(lightEntry, "")
+        pieDataSet.apply {
+            colors = colorsItem
+            setDrawValues(false)
+            sliceSpace = 3f
+        }
+
+        var pieData = PieData(pieDataSet)
+        cds_chart.apply {
+            data = pieData
+            description = null
+            centerText = "조도"
+            legend.isEnabled = false
+            animateY(1400, Easing.EaseInOutQuad)
+            animate()
+            invalidate()
+        }
+    }
+
     fun getTemp() {
         var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("temp_hum").child(firebaseUser.uid)
 
         tReference.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                humEntry.clear()
+                tempEntry.clear()
                 var setting: TempHum? = snapshot.getValue(TempHum::class.java)
 
                 setting?.let {
+                    var percentage = Math.round((setting.hum_rate * 100 / 1023).toDouble())
                     temp_percent.text = setting.temp_rate.toString() + " ℃"
+                    hum_percent.text = "$percentage %"
+                    humEntry.add(PieEntry(percentage.toFloat(), ""))
+                    humEntry.add(PieEntry((100 - percentage).toFloat(), ""))
+
+                    tempEntry.add(PieEntry(setting.temp_rate.toFloat(), ""))
+                    tempEntry.add(PieEntry(50 - setting.temp_rate.toFloat(), ""))
                 }
+                humGraph(humEntry)
+                tempGraph(tempEntry)
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+    }
+
+    fun humGraph(humEntry: ArrayList<PieEntry>) {
+        hum_chart.setUsePercentValues(true)
+
+        var colorsItem = ArrayList<Int>()
+        colorsItem.add(resources.getColor(R.color.colorDarkBlue))
+        colorsItem.add(resources.getColor(R.color.colorLightGray))
+
+        var pieDataSet = PieDataSet(humEntry, "")
+        pieDataSet.apply {
+            colors = colorsItem
+            setDrawValues(false)
+            sliceSpace = 3f
+        }
+
+        var pieData = PieData(pieDataSet)
+        hum_chart.apply {
+            data = pieData
+            description = null
+            centerText = "습도"
+            legend.isEnabled = false
+            animateY(1400, Easing.EaseInOutQuad)
+            animate()
+            invalidate()
+        }
+    }
+
+    fun tempGraph(tempEntry: ArrayList<PieEntry>) {
+        var colorsItem = ArrayList<Int>()
+        colorsItem.add(resources.getColor(R.color.colorRed))
+        colorsItem.add(resources.getColor(R.color.colorLightGray))
+
+        var pieDataSet = PieDataSet(tempEntry, "")
+        pieDataSet.apply {
+            colors = colorsItem
+            setDrawValues(false)
+            sliceSpace = 3f
+        }
+
+        var pieData = PieData(pieDataSet)
+        temp_chart.apply {
+            data = pieData
+            description = null
+            centerText = "온도"
+            legend.isEnabled = false
+            animateY(1400, Easing.EaseInOutQuad)
+            animate()
+            invalidate()
+        }
     }
 
     fun getMode() {

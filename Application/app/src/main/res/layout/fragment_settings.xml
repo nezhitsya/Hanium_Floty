@@ -7,10 +7,9 @@
     tools:context=".fragment.SettingsFragment">
 
     <RelativeLayout
+        android:id="@+id/current_rate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="70dp"
-        android:background="@drawable/top_corner_radius">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/page_name"
@@ -22,7 +21,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:text="Settings"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -41,36 +40,44 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/first"
-            android:layout_width="110dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/auto_onoff"
             android:layout_marginLeft="20dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:outlineSpotShadowColor="@color/colorWhite"
-            app:cardCornerRadius="20dp">
+            android:tooltipText="토양 습도"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/soil_chart"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:padding="20dp"
+                    android:layout_below="@id/first_img" />
+
                 <ImageView
                     android:id="@+id/first_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
                     android:src="@drawable/ic_cloudy" />
 
                 <TextView
                     android:id="@+id/water_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/first_img"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/first_img"
                     android:text=" %"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="25dp" />
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -78,37 +85,45 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/second"
-            android:layout_width="110dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/auto_onoff"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/first"
-            android:backgroundTint="@color/zxing_transparent"
-            android:outlineSpotShadowColor="@color/colorWhite"
-            app:cardCornerRadius="20dp">
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:tooltipText="현재 조도"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/cds_chart"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:padding="20dp"
+                    android:layout_below="@+id/second_img" />
+
                 <ImageView
                     android:id="@+id/second_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
                     android:src="@drawable/ic_sunny" />
 
                 <TextView
                     android:id="@+id/light_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/second_img"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/second_img"
                     android:text=" %"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="25dp" />
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -116,37 +131,71 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/third"
-            android:layout_width="110dp"
-            android:layout_height="150dp"
-            android:layout_below="@id/auto_onoff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/second"
-            android:backgroundTint="@color/zxing_transparent"
-            android:outlineSpotShadowColor="@color/colorWhite"
-            app:cardCornerRadius="20dp">
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:tooltipText="현재 온도 / 습도"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/temp_chart"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/hum_chart"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp" />
+
                 <ImageView
                     android:id="@+id/third_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
                     android:src="@drawable/temp" />
 
                 <TextView
                     android:id="@+id/temp_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/third_img"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/third_img"
                     android:text=" ℃"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="25dp" />
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/hum_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/temp_percent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/third_img"
+                    android:text=" %"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 

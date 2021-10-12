@@ -35,27 +35,36 @@ class LightSettingFragment : Fragment() {
 
         seekbar_led.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                percent.text = "$progress ℃"
+                var percentage = Math.round((progress * 100 / 255).toDouble())
+                percent.text = "$percentage %"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                percent.text = "${seekBar!!.progress} ℃"
+                var percentage = Math.round((seekBar!!.progress * 100 / 255).toDouble())
+                percent.text = "${percentage} %"
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                percent.text = "${seekBar!!.progress} ℃"
+                var percentage = Math.round((seekBar!!.progress * 100 / 255).toDouble())
+                percent.text = "${percentage} %"
                 updateRate(seekBar!!.progress)
             }
         })
 
         seekbar_light.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                var percentage = Math.round((progress * 100 / 1023).toDouble())
+                percent.text = "$percentage %"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                var percentage = Math.round((seekBar!!.progress * 100 / 1023).toDouble())
+                percent.text = "${percentage} %"
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                var percentage = Math.round((seekBar!!.progress * 100 / 1023).toDouble())
+                percent.text = "${percentage} %"
                 updateLight(seekBar!!.progress)
             }
         })
@@ -82,7 +91,10 @@ class LightSettingFragment : Fragment() {
 
                 setting?.let {
                     range.setProgress(setting.led_brightness)
-                    percent.text = setting.led_brightness.toString() + " %"
+                    light_range.setProgress(setting.cds_auto_set)
+
+                    var percentage = Math.round((setting.led_brightness * 100 / 255).toDouble())
+                    percent.text = percentage.toString() + " %"
 
                     if (setting.led_onoff.equals("on")) {
                         onoff.text = "ON"

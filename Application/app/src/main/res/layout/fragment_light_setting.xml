@@ -55,13 +55,14 @@
         android:id="@+id/range"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb_light"
-        android:progressDrawable="@drawable/seekbar_bar_light"
-        android:max="100"
         android:layout_below="@+id/percent"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:layout_alignParentRight="true" />
+        android:min="1"
+        android:max="255"
+        android:progressDrawable="@drawable/seekbar_bar_light"
+        android:thumb="@drawable/seekbar_thumb_light" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,12 +77,13 @@
         android:id="@+id/light_range"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:thumb="@drawable/seekbar_thumb_light"
-        android:progressDrawable="@drawable/seekbar_bar_light"
-        android:max="1000"
         android:layout_below="@+id/range"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:layout_alignParentRight="true" />
+        android:min="1"
+        android:max="1023"
+        android:progressDrawable="@drawable/seekbar_bar_light"
+        android:thumb="@drawable/seekbar_thumb_light" />
 
 </RelativeLayout>

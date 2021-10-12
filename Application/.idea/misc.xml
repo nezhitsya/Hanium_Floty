@@ -28,6 +28,7 @@
         <entry key="app/src/main/res/drawable/track_selector_temp.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/drawable/track_selector_water.xml" value="0.19814814814814816" />
         <entry key="app/src/main/res/layout/activity_pic_search.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.16621376811594202" />
         <entry key="app/src/main/res/layout/diary_item.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.16529248756960446" />
         <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.17074275362318841" />
@@ -37,7 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.1703751495680824" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/layout/fragment_light_setting.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.20869629594363448" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.18201375080462928" />
         <entry key="app/src/main/res/layout/fragment_temperature_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_water_setting.xml" value="0.21314357185948565" />
         <entry key="app/src/main/res/layout/recognition_item.xml" value="0.10840932117527863" />
