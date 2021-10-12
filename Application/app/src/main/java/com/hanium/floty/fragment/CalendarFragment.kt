@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -15,6 +16,7 @@ import com.hanium.floty.model.Diary
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarFragment : Fragment() {
@@ -30,7 +32,18 @@ class CalendarFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_calendar, container, false)
 
+        var todayDate: TextView = view.findViewById(R.id.today_date)
+        var todayMonth: TextView = view.findViewById(R.id.today_month)
+        var todayYear: TextView = view.findViewById(R.id.today_year)
+
         var bundle = Bundle()
+
+        var format: SimpleDateFormat = SimpleDateFormat("MMM", Locale.ENGLISH)
+        var today: Date = Calendar.getInstance().time
+
+        todayDate.text = CalendarDay.today().day.toString()
+        todayYear.text = CalendarDay.today().year.toString()
+        todayMonth.text = format.format(today)
 
         calendar = view.findViewById(R.id.calendar)
         calendar.setSelectedDate(CalendarDay.today())

@@ -59,7 +59,7 @@ class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>, 
                     when(item.itemId) {
                         R.id.edit -> {
                             editComment(postId, mComment.commentid!!)
-                            Toast.makeText(context, "편되었습니다.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "편집되었습니다.", Toast.LENGTH_SHORT).show()
                         }
                         R.id.delete -> {
                             FirebaseDatabase.getInstance().getReference("Comment").child(postId!!).child(mComment.commentid!!).removeValue()

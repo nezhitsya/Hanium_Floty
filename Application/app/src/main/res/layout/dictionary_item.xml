@@ -8,12 +8,9 @@
         android:id="@+id/plant_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_flower_green"
-        app:layout_constraintDimensionRatio="1:1" />
+        android:layout_margin="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_flower_green" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -39,14 +36,14 @@
             android:layout_marginTop="8dp" />
 
     </RelativeLayout>
-    
+
     <ImageView
         android:id="@+id/bookmark"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_not_bookmark"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp" />
+        android:layout_marginRight="30dp"
+        android:src="@drawable/ic_not_bookmark" />
 
 </RelativeLayout>

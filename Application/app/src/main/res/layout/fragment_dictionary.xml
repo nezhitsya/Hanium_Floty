@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="75dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.DictionaryFragment">
 
@@ -17,22 +18,35 @@
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/search_container"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/page_name"-->
-<!--        android:orientation="horizontal">-->
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page_name"
+        android:gravity="center">
 
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:id="@+id/search_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:queryHint="Search"-->
-<!--            app:iconifiedByDefault="true"-->
-<!--            android:layout_margin="10dp" />-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_search" />
 
-<!--    </LinearLayout>-->
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:hint="Search"/>
+
+        <ImageView
+            android:id="@+id/search_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photo" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/recommendation"
@@ -41,7 +55,7 @@
         android:text="추천 식물"
         android:textSize="9dp"
         android:layout_margin="10dp"
-        android:layout_below="@id/page_name" />
+        android:layout_below="@id/search_container" />
 
     <LinearLayout
         android:id="@+id/cardnews"
@@ -56,76 +70,33 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/basil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/first"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="140dp"
-                    android:src="@drawable/basil" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/second"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:text="바질"
-                    android:textSize="9dp"
-                    android:textColor="@color/colorDarkGray"
-                    android:background="@color/colorLightGray"
-                    android:gravity="center"
-                    android:layout_gravity="bottom" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/third"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/argula"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                android:layout_marginLeft="30dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="140dp"
-                    android:src="@drawable/arugula" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:text="루꼴라"
-                    android:textSize="9dp"
-                    android:textColor="@color/colorDarkGray"
-                    android:background="@color/colorLightGray"
-                    android:gravity="center"
-                    android:layout_gravity="bottom" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/rosemary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                android:layout_marginLeft="30dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="140dp"
-                    android:src="@drawable/rosemary" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:text="로즈마리"
-                    android:textSize="9dp"
-                    android:textColor="@color/colorDarkGray"
-                    android:background="@color/colorLightGray"
-                    android:gravity="center"
-                    android:layout_gravity="bottom" />
-
-            </androidx.cardview.widget.CardView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fourth"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
 
         </LinearLayout>
 
@@ -145,7 +116,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/line1" />
+        android:layout_below="@+id/line1"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

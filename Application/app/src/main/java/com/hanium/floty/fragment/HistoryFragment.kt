@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -16,12 +15,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 import com.hanium.floty.R
-import com.hanium.floty.model.Settings
+import com.hanium.floty.model.History
 import kotlinx.android.synthetic.main.fragment_history.*
 
 class HistoryFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
+    var soilEntry = ArrayList<Entry>()
+    var cdsEntry = ArrayList<Entry>()
+    var humEntry = ArrayList<Entry>()
+    var tempEntry = ArrayList<Entry>()
+    val time: Array<Int> = arrayOf(1, 2, 3, 4, 5)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,38 +33,35 @@ class HistoryFragment : Fragment() {
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
-        loadWater()
-        loadLight()
-        loadTemp()
-        loadFan()
+        loadWater() // soilEntry
+        loadLight() // cdsEntry
+        loadTemp() // tempEntry
+        loadFan() // humEntry
 
         return view
     }
 
     fun loadWater() {
-        var wReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("History").child(firebaseUser.uid).child("water")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("history").child(firebaseUser.uid)
 
-        val waterListener = object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var entries = ArrayList<Entry>()
+        for (t in time) {
+            var wReference = reference.child(t.toString())
+            wReference.addValueEventListener(object: ValueEventListener {
 
-                for (datasnapshot: DataSnapshot in snapshot.children) {
-                    for (i in 0..20) {
-                        if (datasnapshot.key == i.toString()) {
-                            var floatkey = Integer.parseInt(datasnapshot.key.toString())
-                            var floatval = Integer.parseInt(datasnapshot.value.toString())
-                            entries.add(Entry(floatkey.toFloat(), floatval.toFloat()))
-                        }
-                    }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val history: History? = snapshot.getValue(History::class.java)
+                    var floatval = Integer.parseInt(history?.soil_rate.toString())
+
+                    soilEntry.add(Entry(t.toFloat(), floatval.toFloat()))
+                    waterGraph(soilEntry)
                 }
-                waterGraph(entries)
-            }
 
-            override fun onCancelled(error: DatabaseError) {
+                override fun onCancelled(error: DatabaseError) {
 
-            }
+                }
+
+            })
         }
-        wReference.addValueEventListener(waterListener)
     }
 
     fun waterGraph(waterEntry: ArrayList<Entry>) {
@@ -98,29 +99,28 @@ class HistoryFragment : Fragment() {
     }
 
     fun loadLight() {
-        var lReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("History").child(firebaseUser.uid).child("light")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("history").child(firebaseUser.uid)
 
-        val lightListener = object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var entries = ArrayList<Entry>()
+        for (t in time) {
+            var lReference = reference.child(t.toString())
 
-                for (datasnapshot: DataSnapshot in snapshot.children) {
-                    for (i in 0..20) {
-                        if (datasnapshot.key == i.toString()) {
-                            var floatkey = Integer.parseInt(datasnapshot.key.toString())
-                            var floatval = Integer.parseInt(datasnapshot.value.toString())
-                            entries.add(Entry(floatkey.toFloat(), floatval.toFloat()))
-                        }
-                    }
+            val lightListener = object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val history: History? = snapshot.getValue(History::class.java)
+                    var floatval = Integer.parseInt(history?.cds_rate.toString())
+
+                    cdsEntry.add(Entry(t.toFloat(), floatval.toFloat()))
+                    lightGraph(cdsEntry)
                 }
-                lightGraph(entries)
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            lReference.addValueEventListener(lightListener)
         }
-        lReference.addValueEventListener(lightListener)
+
     }
 
     fun lightGraph(lightEntry: ArrayList<Entry>) {
@@ -157,29 +157,28 @@ class HistoryFragment : Fragment() {
     }
 
     fun loadTemp() {
-        var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("History").child(firebaseUser.uid).child("temp")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("history").child(firebaseUser.uid)
 
-        val tempListener = object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var entries = ArrayList<Entry>()
+        for (t in time) {
+            var tReference = reference.child(t.toString())
 
-                for (datasnapshot: DataSnapshot in snapshot.children) {
-                    for (i in 0..20) {
-                        if (datasnapshot.key == i.toString()) {
-                            var floatkey = Integer.parseInt(datasnapshot.key.toString())
-                            var floatval = Integer.parseInt(datasnapshot.value.toString())
-                            entries.add(Entry(floatkey.toFloat(), floatval.toFloat()))
-                        }
-                    }
+            val tempListener = object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val history: History? = snapshot.getValue(History::class.java)
+                    var floatval = Integer.parseInt(history?.temp_rate.toString())
+
+                    tempEntry.add(Entry(t.toFloat(), floatval.toFloat()))
+                    tempGraph(tempEntry)
                 }
-                tempGraph(entries)
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            tReference.addValueEventListener(tempListener)
         }
-        tReference.addValueEventListener(tempListener)
+
     }
 
     fun tempGraph(tempEntry: ArrayList<Entry>) {
@@ -216,29 +215,27 @@ class HistoryFragment : Fragment() {
     }
 
     fun loadFan() {
-        var tReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("History").child(firebaseUser.uid).child("fan")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("history").child(firebaseUser.uid)
 
-        val tempListener = object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var entries = ArrayList<Entry>()
+        for (t in time) {
+            var hReference = reference.child(t.toString())
 
-                for (datasnapshot: DataSnapshot in snapshot.children) {
-                    for (i in 0..20) {
-                        if (datasnapshot.key == i.toString()) {
-                            var floatkey = Integer.parseInt(datasnapshot.key.toString())
-                            var floatval = Integer.parseInt(datasnapshot.value.toString())
-                            entries.add(Entry(floatkey.toFloat(), floatval.toFloat()))
-                        }
-                    }
+            val humListener = object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val history: History? = snapshot.getValue(History::class.java)
+                    var floatval = Integer.parseInt(history?.hum_rate.toString())
+
+                    humEntry.add(Entry(t.toFloat(), floatval.toFloat()))
+                    fanGraph(humEntry)
                 }
-                fanGraph(entries)
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            hReference.addValueEventListener(humListener)
         }
-        tReference.addValueEventListener(tempListener)
     }
 
     fun fanGraph(fanEntry: ArrayList<Entry>) {

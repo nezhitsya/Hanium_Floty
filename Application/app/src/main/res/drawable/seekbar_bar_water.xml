@@ -4,7 +4,7 @@
     <item android:id="@+id/background">
         <shape android:shape="line">
             <stroke
-                android:width="6dp"
+                android:width="8dp"
                 android:color="@color/colorLightGray" />
         </shape>
     </item>
@@ -13,7 +13,7 @@
         <clip>
             <shape android:shape="line">
                 <stroke
-                    android:width="6dp"
+                    android:width="8dp"
                     android:color="@color/colorBlue" />
             </shape>
         </clip>

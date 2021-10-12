@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.hanium.floty.fragment.FanSettingFragment;
 import com.hanium.floty.fragment.LightSettingFragment;
 import com.hanium.floty.fragment.SettingsFragment;
 import com.hanium.floty.fragment.TemperatureSettingFragment;
@@ -28,14 +27,12 @@ public class SettingAdapter extends FragmentPagerAdapter {
                 return new LightSettingFragment();
             case 3:
                 return new TemperatureSettingFragment();
-            case 4:
-                return new FanSettingFragment();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 }

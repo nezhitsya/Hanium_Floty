@@ -96,4 +96,6 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.1.0"
     // TODO 5: Optional GPU Delegates
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
+    // Wave View
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 }
