@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/dictionary_item.xml" value="0.16529248756960446" />
         <entry key="app/src/main/res/layout/fragment_bookmark.xml" value="0.17074275362318841" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.12931802418189506" />
-        <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.23108401880991955" />
+        <entry key="app/src/main/res/layout/fragment_dictionary.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dictionary_detail.xml" value="0.268327206301319" />
         <entry key="app/src/main/res/layout/fragment_fan_setting.xml" value="0.1703751495680824" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.1793478260869565" />

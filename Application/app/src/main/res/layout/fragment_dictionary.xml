@@ -70,6 +70,34 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/first"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/second"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/third"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fourth"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_flower_green" />
+
         </LinearLayout>
 
     </LinearLayout>

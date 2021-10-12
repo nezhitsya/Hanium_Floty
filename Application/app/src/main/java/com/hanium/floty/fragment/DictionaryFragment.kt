@@ -1,11 +1,9 @@
 package com.hanium.floty.fragment
 
 import android.content.Intent
-import android.content.res.AssetManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +12,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hanium.floty.PicSearchActivity
 import com.hanium.floty.R
 import com.hanium.floty.adapter.DictionaryAdapter
 import com.hanium.floty.model.Plant
+import de.hdodenhof.circleimageview.CircleImageView
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
-import org.xmlpull.v1.XmlPullParserFactory
 import java.io.IOException
 
 class DictionaryFragment : Fragment() {
@@ -37,6 +36,10 @@ class DictionaryFragment : Fragment() {
 
         var search: EditText = view.findViewById(R.id.search_bar)
         var imageSearch: ImageView = view.findViewById(R.id.search_image)
+        var first: CircleImageView = view.findViewById(R.id.first)
+        var second: CircleImageView = view.findViewById(R.id.second)
+        var third: CircleImageView = view.findViewById(R.id.third)
+        var fourth: CircleImageView = view.findViewById(R.id.fourth)
 
         search.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -93,6 +96,22 @@ class DictionaryFragment : Fragment() {
             e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
+        }
+
+        first.let {
+            Glide.with(this).load(plantList[1].imgurl).into(it)
+        }
+
+        second.let {
+            Glide.with(this).load(plantList[2].imgurl).into(it)
+        }
+
+        third.let {
+            Glide.with(this).load(plantList[3].imgurl).into(it)
+        }
+
+        fourth.let {
+            Glide.with(this).load(plantList[4].imgurl).into(it)
         }
 
         recyclerView = view.findViewById(R.id.recycler_view)
