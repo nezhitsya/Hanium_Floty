@@ -1,4 +1,6 @@
-# Floty
+# 한이음 공모전 1차 합 🏆
+
+## Floty
 ### Smart pots for easy flower cultivation using IoT technology and mobile
 
 ## 역할
