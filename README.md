@@ -39,6 +39,13 @@ Smart pots for easy flower cultivation using IoT technology and mobile
 
 ### 스마트 화분 설계도
 
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139223239-1d08dc06-b6bd-4628-92fc-f5f8a48aa4db.png">
 
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139223248-f7969ab4-165c-485b-8fa8-6cdd97db59e9.png">
 
-<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139222235-25f1a908-c7c9-407d-94e7-81d8d69b9df8.png">
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139223259-46142558-47f8-46ed-a652-4a2009050f70.png">
+
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139223267-503dcb90-a31e-4268-b586-df85cbfc2d01.png">
+
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139223277-ac6a442b-0527-4881-893c-0bbf2d3b118b.png">
+
