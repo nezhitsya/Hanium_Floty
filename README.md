@@ -13,7 +13,7 @@ Smart pots for easy flower cultivation using IoT technology and mobile
 |         [이보람](https://github.com/rammme)         |아두이노 / 스마트 화분 3D 설계|
 |         [최지희](https://github.com/Ji-2)         |어플리케이션 / API 구축|
 
-### 어플리케이션 알고리즘
+### 어플리케이션 흐름도
 
 <img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/139221226-7d69e6a4-b88d-4d8e-9726-3c05efefbaf9.png">
 
