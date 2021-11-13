@@ -126,10 +126,10 @@ class TemperatureSettingFragment : Fragment() {
 
         val hashMap: HashMap<String, Any> = HashMap()
         if (onoff.text == "ON") {
-            hashMap["fan_onoff"] = false
+            hashMap["fan_onoff"] = "off"
             onoff.text = "OFF"
         } else {
-            hashMap["fan_onoff"] = true
+            hashMap["fan_onoff"] = "on"
             onoff.text = "ON"
         }
         mReference.updateChildren(hashMap)

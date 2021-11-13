@@ -131,10 +131,10 @@ class LightSettingFragment : Fragment() {
 
         val hashMap: HashMap<String, Any> = HashMap()
         if (onoff.text == "ON") {
-            hashMap["led_onoff"] = false
+            hashMap["led_onoff"] = "off"
             onoff.text = "OFF"
         } else {
-            hashMap["led_onoff"] = true
+            hashMap["led_onoff"] = "on"
             onoff.text = "ON"
         }
         mReference.updateChildren(hashMap)
